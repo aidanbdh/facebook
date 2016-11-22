@@ -13,3 +13,21 @@
 #post textarea {
   resize: none;
 }
+
+#post button {
+  float:right;
+}
+
+.post {
+  position: relative;
+  height: 136px;
+  width: 601px;
+  padding: 10px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  border-style: solid;
+  border-color: rgba(0,0,0,1);
+  border-width: 1px;
+  border-radius: 3px;
+  font-size: 16px;
+}
