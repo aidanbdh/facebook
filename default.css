@@ -1,6 +1,72 @@
-#timeline {
+body {
+  background-color: rgb(233, 233, 233);
+}
+
+#container {
+  width: 960px;
+  margin:auto;
+}
+
+#cover {
+  width: 100%;;
+  height: 313px;;
+  background-image: url("https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/14265003_331213783891679_3932103480719368665_n.jpg?oh=383515512d48f54fed8b18ab95223b69&oe=58BC340C");
+  background-size: cover;
+  background-position: center top 42%;
   display: inline-block;
-  width: 65vw;
+  position: relative;
+}
+
+#profilephoto {
+  width: 172px;
+  height: 172px;
+  background-color: white;
+  padding: 10px;
+  top: 205px;
+  left: 64px;
+  position: absolute;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  border-color: rgba(150,150,150,0.5);
+}
+
+#profilephoto img {
+  width: 172px;
+  height: 172px;
+}
+
+#profilename {
+  position: relative;
+  top: 380px;
+  left: 64px;
+  text-align: left;
+  width: 172px;
+  padding: 10px;
+  padding-top: 5px;
+  color: black;
+}
+
+#profile {
+  width: 300px;
+  height: 640px;
+  background-color: white;
+  display: inline-block;
+  margin-top: 128px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  border-color: rgba(0,0,0,1);
+}
+
+#profile p {
+  display: block;
+}
+
+#timeline {
+  margin-top: 25px;
+  display: inline-block;
+  width: 65%;
   float: right;
 }
 
@@ -30,4 +96,5 @@
   border-width: 1px;
   border-radius: 3px;
   font-size: 16px;
+  background-color: white;
 }
