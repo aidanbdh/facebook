@@ -1,0 +1,15 @@
+#timeline {
+  display: inline-block;
+  width: 65vw;
+  float: right;
+}
+
+#post {
+  display: inline-block;
+  margin: auto;
+  float: center;
+}
+
+#post textarea {
+  resize: none;
+}
