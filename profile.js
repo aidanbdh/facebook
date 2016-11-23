@@ -7,7 +7,8 @@ var profileFunction = function() {
   photo.src = currentProfile.profilePicture;
   //Cover Photo
   var cover = document.getElementById('cover');
-  cover.style.backgroundImage = currentProfile.coverPhoto;
+  cover.style.backgroundImage = "url('" + currentProfile.coverPhoto + "')";
+  cover.style.backgroundPosition = currentProfile.coverPosition;
   //Profile info
   document.getElementById('work').textContent = "Work: " + currentProfile.work;
   document.getElementById('school').textContent = "School: " + currentProfile.school;
