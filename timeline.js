@@ -1,15 +1,8 @@
-console.log('We are here, we are here, we are here!')
+console.log('We are here, we are here, we are here!');
+//Initialize Variables
+var formtext = document.getElementById('posttext');
+var form = document.getElementById('timeline');
 var timelineFunction = function(){
-  //Clear timeline
-  /*var timeline = document.getElementById('timeline');
-  var timelineDiv = timeline.getElementsByTagName('div');
-  console.log(timelineDiv);
-  for(i=0; i<currentProfile.posts.length; i++) {
-    timeline.removeChild(timelineDiv[0]);
-  };*/
-  //Initialize Variables
-  var form = document.getElementById('post');
-  var formtext = document.getElementById('posttext');
   //Default textbox text
   formtext.addEventListener('click', function(e) {
     if(formtext.value === formtext.defaultValue) {
@@ -46,8 +39,6 @@ var timelineFunction = function(){
       newDiv.appendChild(newEl);
       newEl.appendChild(newText);
       var formChild = form.firstChild;
-      formChild = formChild.nextSibling;
-      formChild = formChild.nextSibling;
       formChild = formChild.nextSibling;
       formChild = formChild.nextSibling;
       form.insertBefore(newDiv,formChild);
