@@ -40,11 +40,11 @@ var profiles = {
     coverPhoto: "http://photos1.meetupstatic.com/photos/event/5/b/3/c/highres_441803356.jpeg",
     name: 'Ron Perris',
     work: "Orange County Code School",
-    school: "Robot who had replaced my brother before I rescued him from the pacific northwest",
+    school: "Unknown",
     home: "Unknown",
-    interests: [' Coding', ' Teaching', ' Probably other things'],
-    bio: "Hi, I'm Mr. Perris's Bio. He lived. He lives. He will have lived. As will everyone. Probably",
-    quotes:"Beep Boop beeep boop beeeeeee------p -Dying fake robot brother",
+    interests: [' Coding', ' Teaching', ' Probably other things.'],
+    bio: "Hi, I'm Mr. Perris's Bio. He lived. He lives. He will have lived. As will everyone. Probably.",
+    quotes:"I use jQuery in 100% of my projects! -Nor sirrep",
     posts: [
       "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
     ]
@@ -58,8 +58,8 @@ var profiles = {
     school: "Colonial America, 1800's",
     home: "Somewhere over the Rainbow",
     interests: [' Coding', ' Teaching', 'Jaming', '$$$'],
-    bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him. He's been here for 600+ years so he's probably going to be here awhile",
-    quotes:"I came I saw I conquered ... again -Tim Davinchi",
+    bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
+    quotes:"Veni Vindi Vichi Vector Victor Victor  -Tim Davinchi",
     posts: [
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
     ]
@@ -67,9 +67,8 @@ var profiles = {
 };
 
 var loginButton = document.getElementById('login');
-
-
 var currentProfile = profiles.guest;
+var addedPost = 0;
 
 //Login
 var login = function () {
@@ -78,9 +77,8 @@ var login = function () {
     var password = prompt("What is your password?");
     if (password === profiles[username].password) {
       //Remove elements
-      for (var i=0; i<currentProfile.posts.length; i++) {
-        form.removeChild(form.lastChild);
-      };
+      content.innerHTML = "";
+      //
       currentProfile = profiles[username];
       timelineFunction();
       profileFunction();
@@ -94,11 +92,10 @@ var login = function () {
 //Logout
 var logout = function() {
   var out = window.confirm("Do you want to logout?");
-  if(out){
+  if(out) {
     //Remove elements
-    for (var i=0; i<currentProfile.posts.length; i++) {
-      form.removeChild(form.lastChild);
-    };
+    content.innerHTML = "";
+    //
     currentProfile = profiles.guest;
     timelineFunction();
     profileFunction();
