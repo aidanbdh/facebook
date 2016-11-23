@@ -10,11 +10,14 @@ var profiles = {
     home: "",
     interests: [],
     bio: "",
+    quotes:"",
     posts: [
-      "Username: aidanbdh Password: ilovecode Try it!"
+      "Name: aidanbdh Password: ilovecode",
+      "Name: ronperris Password: jqueryforlife",
+      "Name: timdavis Password: $$$"
     ]
   },
-  aidanbdh : {
+  aidanbdh: {
     password: "ilovecode",
     profilePicture: "https://avatars.slack-edge.com/2016-11-14/105015263574_c9c95137b4c2ea5b822d_512.png",
     coverPhoto: "https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/14265003_331213783891679_3932103480719368665_n.jpg?oh=383515512d48f54fed8b18ab95223b69&oe=58BC340C",
@@ -30,37 +33,81 @@ var profiles = {
       "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
     ]
+  },
+  ronperris: {
+    password: "jqueryforlife",
+    profilePicture: "https://avatars3.githubusercontent.com/u/963451?v=3&s=400",
+    coverPhoto: "http://photos1.meetupstatic.com/photos/event/5/b/3/c/highres_441803356.jpeg",
+    name: 'Ron Perris',
+    work: "Orange County Code School",
+    school: "Robot who had replaced my brother before I rescued him from the pacific northwest",
+    home: "Unknown",
+    interests: [' Coding', ' Teaching', ' Probably other things'],
+    bio: "Hi, I'm Mr. Perris's Bio. He lived. He lives. He will have lived. As will everyone. Probably",
+    quotes:"Beep Boop beeep boop beeeeeee------p -Dying fake robot brother",
+    posts: [
+      "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
+    ]
+  },
+  timdavis: {
+    password: "$$$",
+    profilePicture: "https://avatars.slack-edge.com/2016-11-14/105043765510_b72b4ba7f80738e50dab_512.jpg",
+    coverPhoto: "https://avatars3.githubusercontent.com/u/7432943?v=3&s=460",
+    name: 'Tim Davis',
+    work: "Orange County Code School",
+    school: "Colonial America, 1800's",
+    home: "Somewhere over the Rainbow",
+    interests: [' Coding', ' Teaching', 'Jaming', '$$$'],
+    bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him. He's been here for 600+ years so he's probably going to be here awhile",
+    quotes:"I came I saw I conquered ... again -Tim Davinchi",
+    posts: [
+      "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
+    ]
   }
-
 };
 
 var loginButton = document.getElementById('login');
 
-//Current User
+
 var currentProfile = profiles.guest;
+
+//Login
 var login = function () {
   var username = prompt("What is your username?");
-  var password = prompt("What is your password?");
-  if (password === profiles[username].password) {
-    currentProfile = profiles[username];
-    timelineFunction();
-    profileFunction();
-    loginButton.textContent= "logout";
-    loginButton.removeEventListener('click', login, false);
-    loginButton.addEventListener('click', function(e) {
-      var logout = window.confirm("Do you want to logout?");
-      if(logout){
-        currentProfile = profiles.guest;
-        timelineFunction();
-        profileFunction();
-        loginButton.addEventListener('click', login, false);
+  if(username) {
+    var password = prompt("What is your password?");
+    if (password === profiles[username].password) {
+      //Remove elements
+      for (var i=0; i<currentProfile.posts.length; i++) {
+        form.removeChild(form.lastChild);
       };
-    }, false);
+      currentProfile = profiles[username];
+      timelineFunction();
+      profileFunction();
+      loginButton.textContent= "Logout";
+      loginButton.removeEventListener('click', login, false);
+      loginButton.addEventListener('click', logout, false);
+    };
   };
 };
 
-//login
-loginButton.addEventListener('click', login, false);
+//Logout
+var logout = function() {
+  var out = window.confirm("Do you want to logout?");
+  if(out){
+    //Remove elements
+    for (var i=0; i<currentProfile.posts.length; i++) {
+      form.removeChild(form.lastChild);
+    };
+    currentProfile = profiles.guest;
+    timelineFunction();
+    profileFunction();
+    loginButton.textContent= "Login";
+    loginButton.addEventListener('click', login, false);
+    loginButton.removeEventListener('click', logout, false);
+  };
+};
 
+loginButton.addEventListener('click', login, false);
 profileFunction();
 timelineFunction();
