@@ -10,7 +10,9 @@ var profiles = {
     home: "",
     interests: [],
     bio: "",
-    posts: []
+    posts: [
+      "Username: aidanbdh Password: ilovecode Try it!"
+    ]
   },
   aidanbdh : {
     password: "ilovecode",
