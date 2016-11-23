@@ -6,8 +6,8 @@ var profileFunction = function() {
   var photo = document.getElementById('profilephotoimg');
   photo.src = currentProfile.profilePicture;
   //Cover Photo
-  /*var cover = document.getElementById('cover');
-  cover.style.backgroundImage = currentProfile.coverPhoto;*/
+  var cover = document.getElementById('cover');
+  cover.style.backgroundImage = currentProfile.coverPhoto;
   //Profile info
   document.getElementById('work').textContent = "Work: " + currentProfile.work;
   document.getElementById('school').textContent = "School: " + currentProfile.school;

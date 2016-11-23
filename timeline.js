@@ -1,7 +1,7 @@
-console.log('We are here, we are here, we are here!');
 //Initialize Variables
 var formtext = document.getElementById('posttext');
 var form = document.getElementById('timeline');
+var content = document.getElementById('content');
 var timelineFunction = function(){
   //Default textbox text
   formtext.addEventListener('click', function(e) {
@@ -22,7 +22,7 @@ var timelineFunction = function(){
       var newText = document.createTextNode(currentProfile.posts[i]);
       newDiv.appendChild(newEl);
       newEl.appendChild(newText);
-      form.appendChild(newDiv);
+      content.appendChild(newDiv);
     };
   };
   initial();
@@ -31,6 +31,8 @@ var timelineFunction = function(){
     if(formtext.value !== formtext.defaultValue) {
       //Add text to posts array
       currentProfile.posts[currentProfile.posts.length] = formtext.value;
+      console.log(currentProfile.posts.length);
+      console.log(currentProfile.posts);
       //Add a new post
       var newDiv = document.createElement('div');
       newDiv.className = "post";
@@ -38,12 +40,15 @@ var timelineFunction = function(){
       var newText = document.createTextNode(currentProfile.posts[currentProfile.posts.length-1]);
       newDiv.appendChild(newEl);
       newEl.appendChild(newText);
-      var formChild = form.firstChild;
-      formChild = formChild.nextSibling;
-      formChild = formChild.nextSibling;
-      form.insertBefore(newDiv,formChild);
+      var formChild = content.firstChild;
+      if(formChild) {
+        content.insertBefore(newDiv,formChild);
+      } else {
+        content.appendChild(newDiv);
+      };
       //Reset form
       formtext.value = formtext.defaultValue;
+      addedPost++;
     };
   };
   //Writing a new post
