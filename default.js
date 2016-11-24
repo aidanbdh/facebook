@@ -77,12 +77,12 @@ var addedPost = 0;
 //Login
 var login = function () {
   var username = prompt("What is your username?");
-  if(username) {
+  if (username) {
     var password = prompt("What is your password?");
     if (password === profiles[username].password) {
       //Remove elements
       content.innerHTML = "";
-      //
+      //Render page again with new info
       currentProfile = profiles[username];
       timelineFunction();
       profileFunction();
@@ -96,7 +96,7 @@ var login = function () {
 //Logout
 var logout = function() {
   var out = window.confirm("Do you want to logout?");
-  if(out) {
+  if (out) {
     //Remove elements
     content.innerHTML = "";
     //
