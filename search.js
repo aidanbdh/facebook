@@ -53,12 +53,11 @@ var search = function(text) {
   //Remove doubles
   var newResults = [];
   for (var i = 0; i < results.length; i++) {
-    if(newResults.indexOf(results[i]) == -1) {
+    if(newResults.indexOf(results[i]) == -1 && results[i] !== currentProfile) {
       newResults.push(results[i]);
     };
   };
   results = newResults;
-  console.log("results" + results);
 };
 
 //Create results from array and display name and profile picture
@@ -67,30 +66,25 @@ var searchBox = function() {
   var l = results.length;
   if (l > 3) { l = 3; };
   //Create results
+  var views = [];
   var box = document.createElement('div');
   for (var i = 0; i < l; i++) {
-    var view = document.createElement('div');
-    var thumbnail = document.createElement('img');
     var result = results[i];
+    var view = document.createElement('div');
+    view.setAttribute('data-dropdown', result);
+    var thumbnail = document.createElement('img');
+    thumbnail.setAttribute('data-dropdown', result);
     thumbnail.setAttribute('src', profiles[result].profilePicture);
     thumbnail.classList.add('thumbnail');
     view.appendChild(thumbnail);
     var name = document.createElement('p');
+    name.setAttribute('data-dropdown', result);
     name.textContent = profiles[result].name;
     name.classList.add('listName');
     view.appendChild(name);
-    box.appendChild(view);
-    //Navigates to other page
-    var temp = profiles[result];
-    view.addEventListener('click', function(e) {
-      currentProfile = temp;
-      content.innerHTML = "";
-      timelineFunction();
-      profileFunction();
-      dropdown.style.display = "none";
-    });
+    views.push(view);
   };
-  return box;
+  return views;
  };
 
 var searchText = document.getElementById("search");
@@ -100,12 +94,13 @@ var dropdown = document.getElementById('dropdown');
 var doSearch = function() {
   //Add results to array
   search(searchText.value);
-  //Add results to html
-  var box = searchBox();
   //Remove previous results
   dropdown.innerHTML = "";
   //Add results to Dom
-  dropdown.appendChild(box);
+  var views = searchBox();
+  for (var i = 0; i < views.length; i++) {
+    dropdown.appendChild(views[i]);
+  }
 };
 
 //Reveals dropdown
@@ -116,10 +111,22 @@ searchText.addEventListener('focus', function(e) {
 //Hides dropdown
 document.getElementById('container').addEventListener('click', function(e) {
   dropdown.style.display = "none";
+  dropdown.innerHTML = "";
 });
 
 //Dynamic searchText
 searchText.addEventListener('input', doSearch);
+
+//Navigates to other page
+dropdown.addEventListener('click', function(event) {
+  console.log(event.target);
+  currentProfile = profiles[event.target.dataset.dropdown];
+  content.innerHTML = "";
+  timelineFunction();
+  profileFunction();
+  dropdown.style.display = "none";
+  dropdown.innerHTML = "";
+});
 
 //Default searchbox text
 searchText.addEventListener('focus', function(e) {
