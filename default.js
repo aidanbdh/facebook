@@ -65,6 +65,7 @@ var profiles = {
     bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
     quotes:"Veni Vindi Vichi Vector Victor Victor  -Tim Davinchi",
     posts: [
+      "Aidan",
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
     ]
   },
@@ -79,7 +80,7 @@ var profiles = {
     home: "Napa",
     interests: [' Pokemon', ' Super Smash Bros', ' Bagels'],
     bio: "Hi, I'm Mr. Garcia's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
-    quotes:"Gotta catch'm all - Ash Ketchum",
+    quotes:"Gotta catch'em all - Ash Ketchum",
     posts: [
       "I just got Pokemon Sun! Can't wait to play it!",
       "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"

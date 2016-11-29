@@ -11,30 +11,31 @@ var search = function(text) {
   results = [];
   //Add results to return array
   //Name
-  /*var name = "";
+  var name = "";
   for (var i = 0; i < profile.length; i++) {
     name = profiles[profile[i]].name.toLowerCase();
     name = name.trim();
-    if (name.indexOf(text) && !results.indexOf(profile[i])) {
+    if (!name.indexOf(text) ) {
       results.push(profile[i]);
     };
-  };*/
+  };
   //Username
   for (var i = 0; i < profile.length; i++) {
-    if (profile[i].indexOf(text) && !results.indexOf(profile[i])) {
+    if (!profile[i].indexOf(text)) {
       results.push(profile[i]);
     };
   };
   //Bio
-  /*var bio = "";
+  var bio = "";
   for (var i = 0; i < profile.length; i++) {
     bio = profiles[profile[i]].bio.toLowerCase();
     bio = bio.trim();
-    if (bio.indexOf(text) && !results.indexOf(profile[i])) {
+    if (!bio.indexOf(text) ) {
       results.push(profile[i]);
     };
   };
-  //Posts
+  //Posts (future update)
+  /*
   var posts = "";
   for (var i = 0; i < profile.length; i++) {
     for (var j = 0; j < profiles[profile[i]].posts.length; j++) {
@@ -42,12 +43,22 @@ var search = function(text) {
     };
     posts = posts.toLowerCase();
     posts = posts.trim();
-    if (posts.indexOf(text) && !results.indexOf(profile[i])) {
+    if (!posts.indexOf(text) ) {
       results.push(profile[i]);
     };
+  };*/
+  //None (future update)
+  /*
+  */
+  //Remove doubles
+  var newResults = [];
+  for (var i = 0; i < results.length; i++) {
+    if(newResults.indexOf(results[i]) == -1) {
+      newResults.push(results[i]);
+    };
   };
-  //None
-  console.log(results);*/
+  results = newResults;
+  console.log("results" + results);
 };
 
 //Create results from array and display name and profile picture
@@ -69,6 +80,15 @@ var searchBox = function() {
     name.classList.add('listName');
     view.appendChild(name);
     box.appendChild(view);
+    //Navigates to other page
+    var temp = profiles[result];
+    view.addEventListener('click', function(e) {
+      currentProfile = temp;
+      content.innerHTML = "";
+      timelineFunction();
+      profileFunction();
+      dropdown.style.display = "none";
+    });
   };
   return box;
  };
@@ -91,11 +111,10 @@ var doSearch = function() {
 //Reveals dropdown
 searchText.addEventListener('focus', function(e) {
   dropdown.style.display = "block";
-  console.log('HI');
 });
 
 //Hides dropdown
-searchText.addEventListener('blur', function(e) {
+document.getElementById('container').addEventListener('click', function(e) {
   dropdown.style.display = "none";
 });
 
