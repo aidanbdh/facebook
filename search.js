@@ -1,27 +1,66 @@
+//Array for results
 var results = [];
+
+//Find results and add to array
 var search = function(text) {
   //Fix text
   text = text.toLowerCase();
   text = text.trim();
   var profile = Object.keys(profiles);
-  //Add results to return array (username)
-  for (var i = 0; i < Object.keys(profiles).length; i++) {
-    if (!profile[i].indexOf(text)) {
+  //Empty array
+  results = [];
+  //Add results to return array
+  //Name
+  /*var name = "";
+  for (var i = 0; i < profile.length; i++) {
+    name = profiles[profile[i]].name.toLowerCase();
+    name = name.trim();
+    if (name.indexOf(text) && !results.indexOf(profile[i])) {
+      results.push(profile[i]);
+    };
+  };*/
+  //Username
+  for (var i = 0; i < profile.length; i++) {
+    if (profile[i].indexOf(text) && !results.indexOf(profile[i])) {
       results.push(profile[i]);
     };
   };
+  //Bio
+  /*var bio = "";
+  for (var i = 0; i < profile.length; i++) {
+    bio = profiles[profile[i]].bio.toLowerCase();
+    bio = bio.trim();
+    if (bio.indexOf(text) && !results.indexOf(profile[i])) {
+      results.push(profile[i]);
+    };
+  };
+  //Posts
+  var posts = "";
+  for (var i = 0; i < profile.length; i++) {
+    for (var j = 0; j < profiles[profile[i]].posts.length; j++) {
+      posts += profiles[profile[i]].posts[j];
+    };
+    posts = posts.toLowerCase();
+    posts = posts.trim();
+    if (posts.indexOf(text) && !results.indexOf(profile[i])) {
+      results.push(profile[i]);
+    };
+  };
+  //None
+  console.log(results);*/
 };
 
-var navBar = document.getElementById('navbar');
-
+//Create results from array and display name and profile picture
 var searchBox = function() {
-  var dropdown = document.createElement('div');
-  dropdown.id = 'dropdown';
-  //Create results in dropdown
-  for (var i = 0; i < results.length; i++) {
-    var result = results[i];
+  //3 results or less
+  var l = results.length;
+  if (l > 3) { l = 3; };
+  //Create results
+  var box = document.createElement('div');
+  for (var i = 0; i < l; i++) {
     var view = document.createElement('div');
     var thumbnail = document.createElement('img');
+    var result = results[i];
     thumbnail.setAttribute('src', profiles[result].profilePicture);
     thumbnail.classList.add('thumbnail');
     view.appendChild(thumbnail);
@@ -29,41 +68,44 @@ var searchBox = function() {
     name.textContent = profiles[result].name;
     name.classList.add('listName');
     view.appendChild(name);
-    dropdown.appendChild(view);
+    box.appendChild(view);
   };
-  return dropdown;
-};
+  return box;
+ };
 
-var searchText = document.getElementById("searchtext");
+var searchText = document.getElementById("search");
+var dropdown = document.getElementById('dropdown');
 
+//Search function
 var doSearch = function() {
+  //Add results to array
   search(searchText.value);
-  var dropdown = searchBox();
-
-  if (searchText.value !== "" && searchText.value !== searchText.defaultValue) {
-    navBar.appendChild(dropdown);
-  };
+  //Add results to html
+  var box = searchBox();
+  //Remove previous results
+  dropdown.innerHTML = "";
+  //Add results to Dom
+  dropdown.appendChild(box);
 };
+
+//Reveals dropdown
+searchText.addEventListener('focus', function(e) {
+  dropdown.style.display = "block";
+  console.log('HI');
+});
+
+//Hides dropdown
+searchText.addEventListener('blur', function(e) {
+  dropdown.style.display = "none";
+});
+
+//Dynamic searchText
+searchText.addEventListener('input', doSearch);
 
 //Default searchbox text
-searchText.addEventListener('click', function(e) {
-  if (searchText.value === searchText.defaultValue) {
-    searchText.value = "";
-  };
+searchText.addEventListener('focus', function(e) {
+  searchText.value = "";
 });
 searchText.addEventListener('blur', function(e) {
-  if (searchText.value === "") {
-    searchText.value = searchText.defaultValue;
-  };
+  searchText.value = searchText.defaultValue;
 });
-
-var searchButton = document.getElementById('button');
-var searchForm = document.getElementById('search');
-
-//Remove dropdown
-if ((!searchButton.activeElement || !searchForm.activeElement) && document.getElementById('dropdown')) {
-  document.getElementById('dropdown').innerHTML = " ";
-};
-
-searchButton.addEventListener('click', doSearch);
-searchForm.addEventListener('click', function(submit) {submit.preventDefault();}); //Prevents form reloading the page

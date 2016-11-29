@@ -10,23 +10,13 @@ body {
   display: inline-block;
   margin-left: 50vw;
   transform: translate(-50%);
-}
-
-#search input {
   position: relative;
   width: 400px;
   height: 40px;
 }
 
-#search #button {
-  position: absolute;
-  left: 101%;
-  top: 4%;
-  width: 13px;
-  height: 13px;
-}
-
-.dropdown {
+#dropdown {
+  display: none;
   position: absolute;;
   margin-left: 50vw;
   transform: translate(-50%);
@@ -42,7 +32,7 @@ body {
   z-index: 2;
 }
 
-.dropdown div {
+#dropdown div {
   height: 60px;
 }
 
