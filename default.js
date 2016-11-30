@@ -18,7 +18,8 @@ var profiles = {
       "Name: timdavis Password: $$$"
     ],
     friends: [],
-    followers []
+    followers: [],
+    notifications: []
   },
   aidanbdh: {
     password: "ilovecode",
@@ -38,7 +39,8 @@ var profiles = {
       "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
     ],
     friends: [],
-    followers []
+    followers: [],
+    notifications: []
   },
   ronperris: {
     password: "jqueryforlife",
@@ -56,7 +58,8 @@ var profiles = {
       "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
     ],
     friends: [],
-    followers []
+    followers: [],
+    notifications: []
   },
   timdavis: {
     password: "$$$",
@@ -75,7 +78,8 @@ var profiles = {
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
     ],
     friends: [],
-    followers []
+    followers: [],
+    notifications: []
   },
   adrian: {
     password: "pokemon",
@@ -94,7 +98,8 @@ var profiles = {
       "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
     ],
     friends: [],
-    followers: []
+    followers: [],
+    notifications: []
   }
 };
 
@@ -111,9 +116,27 @@ var login = function () {
     if (password === profiles[username].password) {
       currentUser = profiles[username];
       loginButton.textContent= "Logout";
+      loginButton.removeEventListener('click', loginPress);
+      loginButton.addEventListener('click', logout);
     };
   };
 };
+
+//Login button
+var loginPress = function() {
+  login();
+  //Remove elements
+  content.innerHTML = "";
+  //Render page again with new info
+  $friend.style.display = "none";
+  if (currentUser !== "none") {
+    currentProfile = currentUser;
+  };
+  timelineFunction();
+  profileFunction();
+  loginButton.removeEventListener('click', loginPress);
+  loginButton.addEventListener('click', logout);
+}
 
 //Logout
 var logout = function() {
@@ -122,22 +145,19 @@ var logout = function() {
     //Remove elements
     content.innerHTML = "";
     //Reset profile
-    currentUser === "none"    timelineFunction();
+    currentUser === "none";
+    timelineFunction();
     profileFunction();
-    loginButton.addEventListener('click', login);
+    loginButton.textContent= "Login";
+    loginButton.addEventListener('click', loginPress);
     loginButton.removeEventListener('click', logout);
   };
 };
 
-loginButton.addEventListener('click', function(e) {
-  login();
-  //Remove elements
-  content.innerHTML = "";
-  //Render page again with new info
-  $friend.style.display = "none";
-  currentProfile = profiles[username];
-  timelineFunction();
-  profileFunction();
-});
+loginButton.addEventListener('click', loginPress);
 profileFunction();
 timelineFunction();
+
+var aidan = profiles.aidanbdh;
+aidan = aidan.followers;
+aidan.push(profiles.guest);
