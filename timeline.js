@@ -24,6 +24,7 @@ var timelineFunction = function() {
     if(formtext.value !== formtext.defaultValue) {
       //Add text to posts array
       currentProfile.posts[currentProfile.posts.length] = formtext.value;
+      //Add
       //Add a new post
       var formChild = content.firstChild;
       if (formChild) {
