@@ -17,7 +17,8 @@ var profiles = {
       "Name: ronperris Password: jqueryforlife",
       "Name: timdavis Password: $$$"
     ],
-    friends: []
+    friends: [],
+    followers []
   },
   aidanbdh: {
     password: "ilovecode",
@@ -36,7 +37,8 @@ var profiles = {
       "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
     ],
-    friends: []
+    friends: [],
+    followers []
   },
   ronperris: {
     password: "jqueryforlife",
@@ -53,7 +55,8 @@ var profiles = {
     posts: [
       "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
     ],
-    friends: []
+    friends: [],
+    followers []
   },
   timdavis: {
     password: "$$$",
@@ -71,7 +74,8 @@ var profiles = {
       "Aidan",
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
     ],
-    friends: []
+    friends: [],
+    followers []
   },
   adrian: {
     password: "pokemon",
@@ -89,7 +93,8 @@ var profiles = {
       "I just got Pokemon Sun! Can't wait to play it!",
       "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
     ],
-    friends: []
+    friends: [],
+    followers: []
   }
 };
 
@@ -116,12 +121,11 @@ var logout = function() {
   if (out) {
     //Remove elements
     content.innerHTML = "";
-    //
-    currentProfile = profiles.guest;
-    timelineFunction();
+    //Reset profile
+    currentUser === "none"    timelineFunction();
     profileFunction();
-    loginButton.addEventListener('click', login, false);
-    loginButton.removeEventListener('click', logout, false);
+    loginButton.addEventListener('click', login);
+    loginButton.removeEventListener('click', logout);
   };
 };
 
