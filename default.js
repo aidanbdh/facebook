@@ -117,7 +117,7 @@ var login = function () {
       currentUser = profiles[username];
       if (currentUser === currentProfile) {
         $friend.style.display = "none";
-      }
+      };
       loginButton.textContent= "Logout";
       loginButton.removeEventListener('click', loginPress);
       loginButton.addEventListener('click', logout);
@@ -133,6 +133,7 @@ var loginPress = function() {
   //Render page again with new info
   if (currentUser !== "none") {
     currentProfile = currentUser;
+    $friend.style.display = "none";
   };
   timelineFunction();
   profileFunction();
