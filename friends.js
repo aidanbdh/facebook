@@ -29,11 +29,9 @@ var addFriend = function() {
     $friend.removeEventListener('click', addFriend);
     $friend.addEventListener('click', removeFriend);
   };
-  console.log(currentUser.friends);
 };
 
 var removeFriend = function() {
-  console.log(currentUser.friends.indexOf(currentProfile));
   if (currentUser.friends.indexOf(currentProfile) !== -1) {
     currentUser.friends.splice(currentUser.friends.indexOf(currentProfile),1);
     currentProfile.followers.splice(currentProfile.followers.indexOf(currentUser),1);
@@ -41,7 +39,6 @@ var removeFriend = function() {
   $friend.textContent = "Add Friend";
   $friend.removeEventListener('click', removeFriend);
   $friend.addEventListener('click', addFriend);
-  console.log(currentUser.friends);
 };
 
 $friend.addEventListener('click', addFriend);
