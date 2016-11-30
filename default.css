@@ -84,7 +84,7 @@ body {
   z-index: 2;
 }
 
-.triangle {
+#triangle {
   position: absolute;
   top: -16px;;
   right: 85px;
