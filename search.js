@@ -121,8 +121,7 @@ searchText.addEventListener('input', doSearch);
 
 //Navigates to other page
 dropdown.addEventListener('click', function(event) {
-  console.log(event.target);
-  if (event.target) {
+  if (event.target.dataset.dropdown) {
     currentProfile = profiles[event.target.dataset.dropdown];
     content.innerHTML = "";
     timelineFunction();
