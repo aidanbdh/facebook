@@ -106,7 +106,18 @@ var profiles = {
 var loginButton = document.getElementById('login');
 var currentProfile = profiles.guest;
 var currentUser = "none";
-var addedPost = 0;
+
+//HomeButton
+var $homePage = document.getElementById('homepage');
+$homePage.addEventListener('click', function(e) {
+  if(currentUser !== "none") {
+    currentProfile = currentUser;
+    content.innerHTML = "";
+    timelineFunction();
+    profileFunction();
+    $friend.style.display = "none";
+  };
+});
 
 //Login
 var login = function () {
