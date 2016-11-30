@@ -115,6 +115,9 @@ var login = function () {
     var password = prompt("What is your password?");
     if (password === profiles[username].password) {
       currentUser = profiles[username];
+      if (currentUser === currentProfile) {
+        $friend.style.display = "none";
+      }
       loginButton.textContent= "Logout";
       loginButton.removeEventListener('click', loginPress);
       loginButton.addEventListener('click', logout);
@@ -128,7 +131,6 @@ var loginPress = function() {
   //Remove elements
   content.innerHTML = "";
   //Render page again with new info
-  $friend.style.display = "none";
   if (currentUser !== "none") {
     currentProfile = currentUser;
   };
@@ -145,7 +147,8 @@ var logout = function() {
     //Remove elements
     content.innerHTML = "";
     //Reset profile
-    currentUser === "none";
+    currentUser = "none";
+    $friend.style.display= "block";
     timelineFunction();
     profileFunction();
     loginButton.textContent= "Login";
@@ -158,6 +161,5 @@ loginButton.addEventListener('click', loginPress);
 profileFunction();
 timelineFunction();
 
-var aidan = profiles.aidanbdh;
-aidan = aidan.followers;
-aidan.push(profiles.guest);
+profiles.guest.followers.push(profiles.aidanbdh);
+profiles.aidanbdh.friends.push(profiles.guest);
