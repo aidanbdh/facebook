@@ -3,8 +3,19 @@
 var $bell = document.getElementById('bell');
 var $notifications = document.getElementById('notification');
 
+var preview = function(text, username) {
+  var newDiv = document.createElement('div');
+  newDiv.className = "post";
+  var newEl = document.createElement('p');
+  var newText = document.createTextNode(text);
+  newDiv.appendChild(newEl);
+  newEl.appendChild(newText);
+  return newDiv;
+}
+
 var notify = function() {
   $notifications.style.display = 'block';
+
 };
 
 $bell.addEventListener('click', notify);
