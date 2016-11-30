@@ -16,7 +16,8 @@ var profiles = {
       "Name: aidanbdh Password: ilovecode",
       "Name: ronperris Password: jqueryforlife",
       "Name: timdavis Password: $$$"
-    ]
+    ],
+    friends: []
   },
   aidanbdh: {
     password: "ilovecode",
@@ -34,7 +35,8 @@ var profiles = {
       "1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
-    ]
+    ],
+    friends: []
   },
   ronperris: {
     password: "jqueryforlife",
@@ -50,7 +52,8 @@ var profiles = {
     quotes:"I use jQuery in 100% of my projects! -Nor sirrep",
     posts: [
       "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
-    ]
+    ],
+    friends: []
   },
   timdavis: {
     password: "$$$",
@@ -67,7 +70,8 @@ var profiles = {
     posts: [
       "Aidan",
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
-    ]
+    ],
+    friends: []
   },
   adrian: {
     password: "pokemon",
@@ -84,12 +88,14 @@ var profiles = {
     posts: [
       "I just got Pokemon Sun! Can't wait to play it!",
       "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
-    ]
+    ],
+    friends: []
   }
 };
 
 var loginButton = document.getElementById('login');
 var currentProfile = profiles.guest;
+var currentUser = "none";
 var addedPost = 0;
 
 //Login
@@ -102,6 +108,8 @@ var login = function () {
       content.innerHTML = "";
       //Render page again with new info
       currentProfile = profiles[username];
+      $friend.style.display = "none";
+      currentUser = profiles[username];
       timelineFunction();
       profileFunction();
       loginButton.textContent= "Logout";

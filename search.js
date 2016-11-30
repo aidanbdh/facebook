@@ -126,6 +126,12 @@ dropdown.addEventListener('click', function(event) {
     content.innerHTML = "";
     timelineFunction();
     profileFunction();
+    $friend.style.display = "block";
+    if (currentUser.friends.indexOf(currentProfile) !== -1) {
+      $friend.textContent = "Unfriend";
+    } else {
+      $friend.textContent = "Add friend";
+    }
     dropdown.style.display = "none";
     dropdown.innerHTML = "";
   };
