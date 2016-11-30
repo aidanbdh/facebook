@@ -65,7 +65,25 @@ var profiles = {
     bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
     quotes:"Veni Vindi Vichi Vector Victor Victor  -Tim Davinchi",
     posts: [
+      "Aidan",
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
+    ]
+  },
+  adrian: {
+    password: "pokemon",
+    profilePicture: "http://vignette3.wikia.nocookie.net/youtubepoop/images/4/4c/Pokeball.png/revision/latest?cb=20150418234807",
+    coverPhoto: "http://www.planwallpaper.com/static/images/Pokemon_wallpaper_3_bLP3szt.jpg",
+    coverPosition: "left top 25%",
+    name: 'Adrian Garcia',
+    work: "Bruegers Bagels",
+    school: "NHS",
+    home: "Napa",
+    interests: [' Pokemon', ' Super Smash Bros', ' Bagels'],
+    bio: "Hi, I'm Mr. Garcia's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
+    quotes:"Gotta catch'em all - Ash Ketchum",
+    posts: [
+      "I just got Pokemon Sun! Can't wait to play it!",
+      "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
     ]
   }
 };
