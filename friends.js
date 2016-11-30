@@ -47,7 +47,7 @@ var removeFriend = function() {
     currentUser.friends.splice(currentUser.friends.indexOf(currentProfile),1);
     currentProfile.followers.splice(currentProfile.followers.indexOf(currentUser),1);
   };
-  $friend.textContent = "Add Friend";
+  $friend.textContent = "Add friend";
   $friend.removeEventListener('click', removeFriend);
   $friend.addEventListener('click', addFriend);
 };
