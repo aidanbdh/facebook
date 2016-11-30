@@ -161,6 +161,3 @@ var logout = function() {
 loginButton.addEventListener('click', loginPress);
 profileFunction();
 timelineFunction();
-
-profiles.guest.followers.push(profiles.aidanbdh);
-profiles.aidanbdh.friends.push(profiles.guest);

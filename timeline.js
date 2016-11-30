@@ -17,14 +17,14 @@ var initial = function() {
     content.appendChild(createPost(currentProfile.posts[i]));
   };
 };
+//Post info object constructor
+function postObject() {
+  this.text = formtext.value;
+  this.username = currentProfile;
+  this.read = false;
+};
 var timelineFunction = function() {
   initial();
-  //Post info object constructor
-  function postObject() {
-    this.text = formtext.value;
-    this.username = currentProfile;
-    this.read = false;
-  };
   //Add and update post function
   var addPost = function() {
     if(formtext.value !== formtext.defaultValue) {
@@ -33,7 +33,7 @@ var timelineFunction = function() {
       //Send to notifications of friends
       for (var i = 0; i < currentProfile.followers.length; i++) {
         currentProfile.followers[i].notifications.push(new postObject());
-      }
+      };
       //Add a new post
       var formChild = content.firstChild;
       if (formChild) {

@@ -96,6 +96,10 @@ body {
   z-index: 3;
 }
 
+.profilename {
+
+}
+
 #login {
   float: right;
   margin-right: 16px;
