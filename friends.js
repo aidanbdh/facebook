@@ -3,19 +3,28 @@
 var $bell = document.getElementById('bell');
 var $notifications = document.getElementById('notification');
 
-var preview = function(text, username) {
-  var newDiv = document.createElement('div');
-  newDiv.className = "post";
-  var newEl = document.createElement('p');
-  var newText = document.createTextNode(text);
-  newDiv.appendChild(newEl);
-  newEl.appendChild(newText);
-  return newDiv;
-}
+var preview = function(i) {
+  var username = currentUser.notifications[i].username;
+  var text = currentUser.notifications[i].text;
+  var view = document.createElement('div');
+  view.style.height = "60px";
+  var thumbnail = document.createElement('img');
+  thumbnail.setAttribute('src', username.profilePicture);
+  thumbnail.classList.add('thumbnail');
+  view.appendChild(thumbnail);
+  var name = document.createElement('p');
+  name.textContent = text;
+  name.classList.add('listName');
+  view.appendChild(name);
+  return view;
+};
 
 var notify = function() {
   $notifications.style.display = 'block';
-
+  $notifications.innerHTML = ""
+  for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
+    $notifications.appendChild(preview(i));
+  };
 };
 
 $bell.addEventListener('click', notify);
