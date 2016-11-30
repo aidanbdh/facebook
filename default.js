@@ -104,17 +104,8 @@ var login = function () {
   if (username) {
     var password = prompt("What is your password?");
     if (password === profiles[username].password) {
-      //Remove elements
-      content.innerHTML = "";
-      //Render page again with new info
-      currentProfile = profiles[username];
-      $friend.style.display = "none";
       currentUser = profiles[username];
-      timelineFunction();
-      profileFunction();
       loginButton.textContent= "Logout";
-      loginButton.removeEventListener('click', login, false);
-      loginButton.addEventListener('click', logout, false);
     };
   };
 };
@@ -129,12 +120,20 @@ var logout = function() {
     currentProfile = profiles.guest;
     timelineFunction();
     profileFunction();
-    loginButton.textContent= "Login";
     loginButton.addEventListener('click', login, false);
     loginButton.removeEventListener('click', logout, false);
   };
 };
 
-loginButton.addEventListener('click', login, false);
+loginButton.addEventListener('click', function(e) {
+  login();
+  //Remove elements
+  content.innerHTML = "";
+  //Render page again with new info
+  $friend.style.display = "none";
+  currentProfile = profiles[username];
+  timelineFunction();
+  profileFunction();
+});
 profileFunction();
 timelineFunction();
