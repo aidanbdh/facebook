@@ -109,9 +109,11 @@ searchText.addEventListener('focus', function(e) {
 });
 
 //Hides dropdown
-document.getElementById('container').addEventListener('click', function(e) {
-  dropdown.style.display = "none";
-  dropdown.innerHTML = "";
+document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
+  if (event.target !== dropdown && event.target!== searchText) {
+    dropdown.style.display = "none";
+    dropdown.innerHTML = "";
+  };
 });
 
 //Dynamic searchText
@@ -120,12 +122,14 @@ searchText.addEventListener('input', doSearch);
 //Navigates to other page
 dropdown.addEventListener('click', function(event) {
   console.log(event.target);
-  currentProfile = profiles[event.target.dataset.dropdown];
-  content.innerHTML = "";
-  timelineFunction();
-  profileFunction();
-  dropdown.style.display = "none";
-  dropdown.innerHTML = "";
+  if (event.target) {
+    currentProfile = profiles[event.target.dataset.dropdown];
+    content.innerHTML = "";
+    timelineFunction();
+    profileFunction();
+    dropdown.style.display = "none";
+    dropdown.innerHTML = "";
+  };
 });
 
 //Default searchbox text
