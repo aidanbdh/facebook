@@ -11,7 +11,7 @@ var search = function(text) {
   results = [];
   //Add results to return array
   //Name
-  var name = "";
+  var name = '';
   for (var i = 0; i < profile.length; i++) {
     name = profiles[profile[i]].name.toLowerCase();
     name = name.trim();
@@ -26,7 +26,7 @@ var search = function(text) {
     };
   };
   //Bio
-  var bio = "";
+  var bio = '';
   for (var i = 0; i < profile.length; i++) {
     bio = profiles[profile[i]].bio.toLowerCase();
     bio = bio.trim();
@@ -35,21 +35,9 @@ var search = function(text) {
     };
   };
   //Posts (future update)
-  /*
-  var posts = "";
-  for (var i = 0; i < profile.length; i++) {
-    for (var j = 0; j < profiles[profile[i]].posts.length; j++) {
-      posts += profiles[profile[i]].posts[j];
-    };
-    posts = posts.toLowerCase();
-    posts = posts.trim();
-    if (!posts.indexOf(text) ) {
-      results.push(profile[i]);
-    };
-  };*/
+
   //None (future update)
-  /*
-  */
+
   //Remove doubles
   var newResults = [];
   for (var i = 0; i < results.length; i++) {
@@ -87,7 +75,7 @@ var searchBox = function() {
   return views;
  };
 
-var searchText = document.getElementById("search");
+var searchText = document.getElementById('search');
 var dropdown = document.getElementById('dropdown');
 
 //Search function
@@ -95,7 +83,7 @@ var doSearch = function() {
   //Add results to array
   search(searchText.value);
   //Remove previous results
-  dropdown.innerHTML = "";
+  dropdown.innerHTML = '';
   //Add results to Dom
   var views = searchBox();
   for (var i = 0; i < views.length; i++) {
@@ -105,14 +93,14 @@ var doSearch = function() {
 
 //Reveals dropdown
 searchText.addEventListener('focus', function(e) {
-  dropdown.style.display = "block";
+  dropdown.style.display = 'block';
 });
 
 //Hides dropdown
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
   if (event.target !== dropdown && event.target!== searchText) {
-    dropdown.style.display = "none";
-    dropdown.innerHTML = "";
+    dropdown.style.display = 'none';
+    dropdown.innerHTML = '';
   };
 });
 
@@ -123,27 +111,27 @@ searchText.addEventListener('input', doSearch);
 dropdown.addEventListener('click', function(event) {
   if (event.target.dataset.dropdown) {
     currentProfile = profiles[event.target.dataset.dropdown];
-    content.innerHTML = "";
-    timelineFunction();
-    profileFunction();
-    $friend.style.display = "block";
-    if (currentUser === "none") {
-      $friend.textContent = "Add friend";
+    content.innerHTML = '';
+    addTimeline();
+    updateProfile(currentProfile);
+    $friend.style.display = 'block';
+    if (currentUser === 'none') {
+      $friend.textContent = 'Add friend';
     } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
-      $friend.textContent = "Unfriend";
+      $friend.textContent = 'Unfriend';
     } else if (currentUser === currentProfile) {
-      $friend.style.display = "none";
+      $friend.style.display = 'none';
     } else {
-      $friend.textContent = "Add friend";
+      $friend.textContent = 'Add friend';
     }
-    dropdown.style.display = "none";
-    dropdown.innerHTML = "";
+    dropdown.style.display = 'none';
+    dropdown.innerHTML = '';
   };
 });
 
 //Default searchbox text
 searchText.addEventListener('focus', function(e) {
-  searchText.value = "";
+  searchText.value = '';
 });
 searchText.addEventListener('blur', function(e) {
   searchText.value = searchText.defaultValue;

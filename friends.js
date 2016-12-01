@@ -3,11 +3,11 @@
 var $bell = document.getElementById('bell');
 var $notifications = document.getElementById('notification');
 
-var preview = function(i) {
-  var username = currentUser.notifications[i].username;
-  var text = currentUser.notifications[i].text;
+var preview = function(notification) {
+  var username = notification.username;
+  var text = notification.text;
   var view = document.createElement('div');
-  view.style.height = "60px";
+  view.style.height = '60px';
   var thumbnail = document.createElement('img');
   thumbnail.setAttribute('src', username.profilePicture);
   thumbnail.classList.add('thumbnail');
@@ -21,9 +21,9 @@ var preview = function(i) {
 
 var notify = function() {
   $notifications.style.display = 'block';
-  $notifications.innerHTML = ""
+  $notifications.innerHTML = ''
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
-    $notifications.appendChild(preview(i));
+    $notifications.appendChild(preview(currentUser.notifications[i]));
   };
 };
 
@@ -31,7 +31,7 @@ $bell.addEventListener('click', notify);
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
   if (event.target !== $notifications && event.target!== $bell) {
-    $notifications.style.display = "none";
+    $notifications.style.display = 'none';
   };
 });
 
@@ -40,12 +40,12 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(even
 var $friend = document.getElementById('friend');
 
 var addFriend = function() {
-  if (currentUser === "none") {
+  if (currentUser === 'none') {
     login();
   } else {
     currentUser.friends.push(currentProfile);
     currentProfile.followers.push(currentUser);
-    $friend.textContent = "Unfriend";
+    $friend.textContent = 'Unfriend';
     $friend.removeEventListener('click', addFriend);
     $friend.addEventListener('click', removeFriend);
   };
@@ -56,7 +56,7 @@ var removeFriend = function() {
     currentUser.friends.splice(currentUser.friends.indexOf(currentProfile),1);
     currentProfile.followers.splice(currentProfile.followers.indexOf(currentUser),1);
   };
-  $friend.textContent = "Add friend";
+  $friend.textContent = 'Add friend';
   $friend.removeEventListener('click', removeFriend);
   $friend.addEventListener('click', addFriend);
 };
