@@ -127,7 +127,9 @@ dropdown.addEventListener('click', function(event) {
     timelineFunction();
     profileFunction();
     $friend.style.display = "block";
-    if (currentUser.friends.indexOf(currentProfile) !== -1) {
+    if (currentUser = "none") {
+      $friend.textContent = "Add friend";
+    } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
       $friend.textContent = "Unfriend";
     } else if (currentUser === currentProfile) {
       $friend.style.display = "none";

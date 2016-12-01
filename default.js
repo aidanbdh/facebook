@@ -102,6 +102,13 @@ var profiles = {
   }
 };
 
+function postObject(text) {
+  this.text = text;
+  this.likes = 0;
+  this.whoLikes = [];
+};
+
+
 var loginButton = document.getElementById('login');
 var currentProfile = profiles.guest;
 var currentUser = "none";
@@ -169,17 +176,10 @@ var logout = function() {
 };
 
 loginButton.addEventListener('click', loginPress);
+
+/*profiles.guest.posts[0] = postObject("Name: aidanbdh Password: ilovecode");
+profiles.guest.posts[1] = postObject("Name: ronperris Password: jqueryforlife");
+profiles.guest.posts[2] = postObject("Name: timdavis Password: $$$");*/
+
 profileFunction();
 timelineFunction();
-
-profiles.guest.posts[0] = {
-  text: "Name: aidanbdh Password: ilovecode";
-  likes: 0;};
-profiles.guest.posts[1] = {
-  text: "Name: ronperris Password: jqueryforlife";
-  likes: 0;
-};
-profiles.guest.posts[2] = {
-  text: "Name: timdavis Password: $$$";
-  likes: 0;
-};
