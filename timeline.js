@@ -89,8 +89,9 @@ content.addEventListener('click', function(event) {
     event.target.dataset.likes++;
     var likes = event.target.dataset.likes;
     event.target.textContent = 'Like ' + likes;
-  } else if (currentUser!== 'none') {
+  } else if (currentUser !== 'none') {
     currentProfile.posts[who].whoLikes.splice(currentProfile.posts[who].whoLikes.indexOf(currentUser),1);
+    currentProfile.posts[who].likes--;
     event.target.dataset.likes--;
     var likes = event.target.dataset.likes;
     event.target.textContent = 'Like ' + likes;
