@@ -77,8 +77,7 @@ var profiles = {
       2: {text: "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"; likes: 0;}
     */],
     friends: [],
-    followers: [],
-    notifications: []
+
   },
   adrian: {
     password: "pokemon",
