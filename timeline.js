@@ -55,9 +55,7 @@ var addTimeline = function() {
       var formChild = content.firstChild;
       if (formChild) {
         content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), formChild);
-        console.log(currentProfile.posts[currentProfile.posts.length-1].likes);
       } else {
-        console.log(currentProfile.posts[currentProfile.posts.length-1].likes);
         content.appendChild(createPost(currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1));
       };
       //Reset form
