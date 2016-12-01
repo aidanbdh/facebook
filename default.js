@@ -13,9 +13,6 @@ var profiles = {
     bio: '',
     quotes:'',
     posts: [],
-    /*posts[1] = {text: 'Name: aidanbdh Password: ilovecode';likes: 0;},
-    posts[2] = {text: 'Name: ronperris Password: jqueryforlife'; likes: 0;},
-    posts[3] = {text: 'Name: timdavis Password: $$$'; likes: 0;}*/
     friends: [],
     followers: [],
     notifications: []
@@ -165,6 +162,7 @@ var logout = function() {
   //Reset profile
   currentUser = 'none';
   $friend.style.display= 'block';
+  $friend.textContent= 'Add friend';
   addTimeline();
   updateProfile(currentProfile);
   loginButton.textContent= 'Login';
@@ -174,9 +172,9 @@ var logout = function() {
 
 loginButton.addEventListener('click', loginPress);
 
-/*profiles.guest.posts[0] = postObject('Name: aidanbdh Password: ilovecode');
-profiles.guest.posts[1] = postObject('Name: ronperris Password: jqueryforlife');
-profiles.guest.posts[2] = postObject('Name: timdavis Password: $$$');*/
+profiles.guest.posts.push(new postObject('Name: aidanbdh Password: ilovecode'));
+profiles.guest.posts.push(new postObject('Name: ronperris Password: jqueryforlife'));
+profiles.guest.posts.push(new postObject('Name: timdavis Password: $$$'));
 
 updateProfile(currentProfile);
 addTimeline();
