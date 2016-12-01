@@ -16,7 +16,10 @@ var profiles = {
       "Name: aidanbdh Password: ilovecode",
       "Name: ronperris Password: jqueryforlife",
       "Name: timdavis Password: $$$"
-    ]
+    ],
+    friends: [],
+    followers: [],
+    notifications: []
   },
   aidanbdh: {
     password: "ilovecode",
@@ -34,7 +37,10 @@ var profiles = {
       "1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
       "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
-    ]
+    ],
+    friends: [],
+    followers: [],
+    notifications: []
   },
   ronperris: {
     password: "jqueryforlife",
@@ -50,7 +56,10 @@ var profiles = {
     quotes:"I use jQuery in 100% of my projects! -Nor sirrep",
     posts: [
       "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
-    ]
+    ],
+    friends: [],
+    followers: [],
+    notifications: []
   },
   timdavis: {
     password: "$$$",
@@ -67,7 +76,10 @@ var profiles = {
     posts: [
       "Aidan",
       "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
-    ]
+    ],
+    friends: [],
+    followers: [],
+    notifications: []
   },
   adrian: {
     password: "pokemon",
@@ -84,13 +96,28 @@ var profiles = {
     posts: [
       "I just got Pokemon Sun! Can't wait to play it!",
       "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
-    ]
+    ],
+    friends: [],
+    followers: [],
+    notifications: []
   }
 };
 
 var loginButton = document.getElementById('login');
 var currentProfile = profiles.guest;
-var addedPost = 0;
+var currentUser = "none";
+
+//HomeButton
+var $homePage = document.getElementById('homepage');
+$homePage.addEventListener('click', function(e) {
+  if(currentUser !== "none") {
+    currentProfile = currentUser;
+    content.innerHTML = "";
+    timelineFunction();
+    profileFunction();
+    $friend.style.display = "none";
+  };
+});
 
 //Login
 var login = function () {
@@ -98,18 +125,32 @@ var login = function () {
   if (username) {
     var password = prompt("What is your password?");
     if (password === profiles[username].password) {
-      //Remove elements
-      content.innerHTML = "";
-      //Render page again with new info
-      currentProfile = profiles[username];
-      timelineFunction();
-      profileFunction();
+      currentUser = profiles[username];
+      if (currentUser === currentProfile) {
+        $friend.style.display = "none";
+      };
       loginButton.textContent= "Logout";
-      loginButton.removeEventListener('click', login, false);
-      loginButton.addEventListener('click', logout, false);
+      loginButton.removeEventListener('click', loginPress);
+      loginButton.addEventListener('click', logout);
     };
   };
 };
+
+//Login button
+var loginPress = function() {
+  login();
+  //Remove elements
+  content.innerHTML = "";
+  //Render page again with new info
+  if (currentUser !== "none") {
+    currentProfile = currentUser;
+    $friend.style.display = "none";
+  };
+  timelineFunction();
+  profileFunction();
+  loginButton.removeEventListener('click', loginPress);
+  loginButton.addEventListener('click', logout);
+}
 
 //Logout
 var logout = function() {
@@ -117,16 +158,17 @@ var logout = function() {
   if (out) {
     //Remove elements
     content.innerHTML = "";
-    //
-    currentProfile = profiles.guest;
+    //Reset profile
+    currentUser = "none";
+    $friend.style.display= "block";
     timelineFunction();
     profileFunction();
     loginButton.textContent= "Login";
-    loginButton.addEventListener('click', login, false);
-    loginButton.removeEventListener('click', logout, false);
+    loginButton.addEventListener('click', loginPress);
+    loginButton.removeEventListener('click', logout);
   };
 };
 
-loginButton.addEventListener('click', login, false);
+loginButton.addEventListener('click', loginPress);
 profileFunction();
 timelineFunction();

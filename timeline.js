@@ -13,9 +13,15 @@ var createPost = function(text) {
   return newDiv;
 }
 var initial = function() {
-  for (var i=currentProfile.posts.length-1; i>-1; i--) {
+  for (var i = currentProfile.posts.length-1; i > -1; i--) {
     content.appendChild(createPost(currentProfile.posts[i]));
   };
+};
+//Post info object constructor
+function postObject() {
+  this.text = formtext.value;
+  this.username = currentProfile;
+  this.read = false;
 };
 var timelineFunction = function() {
   initial();
@@ -24,6 +30,10 @@ var timelineFunction = function() {
     if(formtext.value !== formtext.defaultValue) {
       //Add text to posts array
       currentProfile.posts[currentProfile.posts.length] = formtext.value;
+      //Send to notifications of friends
+      for (var i = 0; i < currentProfile.followers.length; i++) {
+        currentProfile.followers[i].notifications.push(new postObject());
+      };
       //Add a new post
       var formChild = content.firstChild;
       if (formChild) {
