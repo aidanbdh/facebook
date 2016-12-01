@@ -112,7 +112,7 @@ function postObject(text) {
 
 
 var loginButton = document.getElementById('login');
-var currentProfile = profiles.guest;
+var currentProfile = profiles[0];
 var currentUser = 'none';
 
 //HomeButton
@@ -131,15 +131,25 @@ $homePage.addEventListener('click', function(e) {
 var login = function () {
   var username = prompt('What is your username?');
   if (!username) return;
-  var password = prompt('What is your password?');
-  if (password !== profiles[username].password) return;
-  currentUser = profiles[username];
-  if (currentUser === currentProfile) {
-    $friend.style.display = 'none';
+  for (var i = 0; i < profiles.length; i++) {
+    if (username === profiles[i].user) {
+      var password = prompt('What is your password?');
+      if (password !== profiles[i].password) password = prompt('Please reneter your password');
+      if (password !== profiles[i].password) return;
+      currentUser = profiles[i];
+      if (currentUser === currentProfile) {
+        $friend.style.display = 'none';
+      };
+      loginButton.textContent= 'Logout';
+      loginButton.removeEventListener('click', loginPress);
+      loginButton.addEventListener('click', logout);
+      console.log('hello');
+      return;
+    } else if (i === profiles.length-1) {
+      alert('Username not found. Please try again');
+      login();
+    };
   };
-  loginButton.textContent= 'Logout';
-  loginButton.removeEventListener('click', loginPress);
-  loginButton.addEventListener('click', logout);
 };
 
 //Login button
@@ -154,8 +164,6 @@ var loginPress = function() {
   };
   addTimeline();
   updateProfile(currentProfile);
-  loginButton.removeEventListener('click', loginPress);
-  loginButton.addEventListener('click', logout);
 }
 
 //Logout
@@ -177,9 +185,9 @@ var logout = function() {
 
 loginButton.addEventListener('click', loginPress);
 
-profiles.guest.posts.push(new postObject('Name: aidanbdh Password: ilovecode'));
-profiles.guest.posts.push(new postObject('Name: ronperris Password: jqueryforlife'));
-profiles.guest.posts.push(new postObject('Name: timdavis Password: $$$'));
+profiles[0].posts.push(new postObject('Name: aidanbdh Password: ilovecode'));
+profiles[0].posts.push(new postObject('Name: ronperris Password: jqueryforlife'));
+profiles[0].posts.push(new postObject('Name: timdavis Password: $$$'));
 
 updateProfile(currentProfile);
 addTimeline();
