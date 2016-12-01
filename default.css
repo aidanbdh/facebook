@@ -102,7 +102,7 @@ body {
   z-index: 3;
 }
 
-.profilename {
+.profile-name {
 
 }
 
@@ -124,7 +124,7 @@ body {
   position: relative;
 }
 
-#profilephoto {
+#profile-photo {
   width: 172px;
   height: 172px;
   background-color: white;
@@ -138,12 +138,12 @@ body {
   border-color: rgba(150,150,150,0.5);
 }
 
-#profilephoto img {
+#profile-photo img {
   width: 172px;
   height: 172px;
 }
 
-#profilename {
+#profile-name {
   position: relative;
   top: 380px;
   left: 64px;
