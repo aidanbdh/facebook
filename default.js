@@ -1,6 +1,7 @@
 //Global profile info variables
-var profiles = {
-  guest : {
+var profiles = [
+  {
+    user: 'guest',
     password: '',
     profilePicture: 'http://cdn2.hubspot.net/hub/126289/file-329555845-jpg/images/brain1.jpg',
     coverPhoto: 'http://www.sarabestnutrition.com/wp-content/uploads/2016/03/brain3.png',
@@ -17,7 +18,8 @@ var profiles = {
     followers: [],
     notifications: []
   },
-  aidanbdh: {
+  {
+    user: 'aidanbdh',
     password: 'ilovecode',
     profilePicture: 'https://avatars.slack-edge.com/2016-11-14/105015263574_c9c95137b4c2ea5b822d_512.png',
     coverPhoto: 'https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/14265003_331213783891679_3932103480719368665_n.jpg?oh=383515512d48f54fed8b18ab95223b69&oe=58BC340C',
@@ -38,7 +40,8 @@ var profiles = {
     followers: [],
     notifications: []
   },
-  ronperris: {
+  {
+    user: 'ronperris',
     password: 'jqueryforlife',
     profilePicture: 'https://avatars3.githubusercontent.com/u/963451?v=3&s=400',
     coverPhoto: 'http://photos1.meetupstatic.com/photos/event/5/b/3/c/highres_441803356.jpeg',
@@ -57,7 +60,8 @@ var profiles = {
     followers: [],
     notifications: []
   },
-  timdavis: {
+  {
+    user: 'timdavis',
     password: '$$$',
     profilePicture: 'https://avatars.slack-edge.com/2016-11-14/105043765510_b72b4ba7f80738e50dab_512.jpg',
     coverPhoto: 'https://avatars3.githubusercontent.com/u/7432943?v=3&s=460',
@@ -77,7 +81,8 @@ var profiles = {
     followers: [],
     notifications: []
   },
-  adrian: {
+  {
+    user: 'adrian',
     password: 'pokemon',
     profilePicture: 'http://vignette3.wikia.nocookie.net/youtubepoop/images/4/4c/Pokeball.png/revision/latest?cb=20150418234807',
     coverPhoto: 'http://www.planwallpaper.com/static/images/Pokemon_wallpaper_3_bLP3szt.jpg',
@@ -97,7 +102,7 @@ var profiles = {
     followers: [],
     notifications: []
   }
-};
+];
 
 function postObject(text) {
   this.text = text;
