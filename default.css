@@ -192,6 +192,7 @@ body {
 }
 
 .post {
+  position: relative;
   height: 136px;
   width: 601px;
   padding: 10px;
@@ -203,4 +204,12 @@ body {
   border-radius: 3px;
   font-size: 16px;
   background-color: white;
+}
+
+.post a {
+  position: absolute;;
+  bottom: 12px;
+  right: 24px;
+  font-size: 12px;
+  font-family: sans-serif;
 }
