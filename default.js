@@ -12,11 +12,10 @@ var profiles = {
     interests: [],
     bio: "",
     quotes:"",
-    posts: [
-      "Name: aidanbdh Password: ilovecode",
-      "Name: ronperris Password: jqueryforlife",
-      "Name: timdavis Password: $$$"
-    ],
+    posts: [],
+    /*posts[1] = {text: "Name: aidanbdh Password: ilovecode";likes: 0;},
+    posts[2] = {text: "Name: ronperris Password: jqueryforlife"; likes: 0;},
+    posts[3] = {text: "Name: timdavis Password: $$$"; likes: 0;}*/
     friends: [],
     followers: [],
     notifications: []
@@ -34,10 +33,10 @@ var profiles = {
     bio: "Working towards becoming a software developer! Check out some of my projects at www.github.com/aidanbdh",
     quotes: "The last thing I want to do is hurt you. And after that, the to-do list is complete and I can go home and watch tv. -Welcome to Nightvale",
     posts: [
-      "1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
-      "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl.",
-      "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."
-    ],
+      /*1: {text: "1Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."; likes: 0;},
+      2: {text: "2Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."; likes: 0;},
+      3: {text: "3Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean mollis ornare lacus, id maximus est hendrerit nec. Cras vel congue nunc, eget lobortis nisi. Suspendisse non erat neque. Nulla luctus ut velit vestibulum suscipit. Cras quis ultrices diam. Fusce semper diam vel odio euismod facilisis. Vivamus quis dignissim tortor. Nam viverra libero id enim tincidunt aliquam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas maximus metus at mi ullamcorper, ac posuere ipsum sodales. Maecenas malesuada faucibus enim sit amet feugiat. Etiam elit nisi, accumsan et tempus ut, auctor sit amet nisl."; likes: 0;}
+    */],
     friends: [],
     followers: [],
     notifications: []
@@ -55,7 +54,7 @@ var profiles = {
     bio: "Hi, I'm Mr. Perris's Bio. He lived. He lives. He will have lived. As will everyone. Probably.",
     quotes:"I use jQuery in 100% of my projects! -Nor sirrep",
     posts: [
-      "Can't wait to look at Aidan's pull requests! Save the best for last I always say"
+      //1:{text: "Can't wait to look at Aidan's pull requests! Save the best for last I always say"; likes: 0;}
     ],
     friends: [],
     followers: [],
@@ -74,9 +73,9 @@ var profiles = {
     bio: "Hi, I'm Mr. Davis's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
     quotes:"Veni Vindi Vichi Vector Victor Victor  -Tim Davinchi",
     posts: [
-      "Aidan",
-      "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"
-    ],
+      /*1: {text: "Aidan"; likes: 0;},
+      2: {text: "I have almost found the Philosophers Stone! I can stop drinking unicorns blood and absorbing the souls of children to continue my existence!"; likes: 0;}
+    */],
     friends: [],
     followers: [],
     notifications: []
@@ -94,9 +93,9 @@ var profiles = {
     bio: "Hi, I'm Mr. Garcia's Bio. He lived. He lives. He will have lived. As will everyone. Probably not him.",
     quotes:"Gotta catch'em all - Ash Ketchum",
     posts: [
-      "I just got Pokemon Sun! Can't wait to play it!",
-      "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"
-    ],
+      /*1: {text: "I just got Pokemon Sun! Can't wait to play it!"; likes: 0;},
+      2: {text: "Super Smash Bros tournament tomorrow! Still need 5 more people! Bring your own controller and some food!"; likes: 0;}
+    */],
     friends: [],
     followers: [],
     notifications: []
@@ -172,3 +171,15 @@ var logout = function() {
 loginButton.addEventListener('click', loginPress);
 profileFunction();
 timelineFunction();
+
+profiles.guest.posts[0] = {
+  text: "Name: aidanbdh Password: ilovecode";
+  likes: 0;};
+profiles.guest.posts[1] = {
+  text: "Name: ronperris Password: jqueryforlife";
+  likes: 0;
+};
+profiles.guest.posts[2] = {
+  text: "Name: timdavis Password: $$$";
+  likes: 0;
+};

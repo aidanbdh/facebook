@@ -8,31 +8,54 @@ var createPost = function(text) {
   newDiv.className = "post";
   var newEl = document.createElement('p');
   var newText = document.createTextNode(text);
+  var likeNumberContainer = document.createElement('a');
+  likeNumberContainer.setAttribute('data-likes', 0);
+  var likes
+  var whoLikes = [];
+  var likeNumber = document.createTextNode("Like 0");
   newDiv.appendChild(newEl);
   newEl.appendChild(newText);
+  newDiv.appendChild(likeNumberContainer);
+  likeNumberContainer.appendChild(likeNumber);
+  newDiv.addEventListener('click', function(event) {
+    if (event.target.dataset.likes) {
+      if (currentUser !== "none" && whoLikes.indexOf(currentUser) === -1) {
+        console.log('yo');
+        whoLikes.push(currentUser);
+
+        likeNumber.textContent = "Like " + likes;
+      };
+    };
+  });
   return newDiv;
 }
 var initial = function() {
   for (var i = currentProfile.posts.length-1; i > -1; i--) {
-    content.appendChild(createPost(currentProfile.posts[i]));
+    content.appendChild(createPost(currentProfile.posts[i].text));
   };
 };
 //Post info object constructor
-function postObject() {
+function postNotificationObject() {
   this.text = formtext.value;
   this.username = currentProfile;
   this.read = false;
 };
+
+function postObject(text) {
+  this.text = text;
+  this.likes = 0;
+};
+
 var timelineFunction = function() {
   initial();
   //Add and update post function
   var addPost = function() {
     if(formtext.value !== formtext.defaultValue) {
       //Add text to posts array
-      currentProfile.posts[currentProfile.posts.length] = formtext.value;
+      currentProfile.posts[currentProfile.posts.length] = postObject(formtext.value);
       //Send to notifications of friends
       for (var i = 0; i < currentProfile.followers.length; i++) {
-        currentProfile.followers[i].notifications.push(new postObject());
+        currentProfile.followers[i].notifications.push(new postNotificationObject());
       };
       //Add a new post
       var formChild = content.firstChild;
@@ -59,5 +82,7 @@ formtext.addEventListener('blur', function(e) {
     formtext.value = formtext.defaultValue;
   };
 });
-//Writing a new post
+
 form.addEventListener('submit', function(submit) {submit.preventDefault();}); //Prevents form reloading the page
+
+//likes
