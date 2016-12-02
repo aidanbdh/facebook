@@ -213,3 +213,7 @@ body {
   font-size: 12px;
   font-family: sans-serif;
 }
+
+#new-profile-container {
+  display: none;
+}
