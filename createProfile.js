@@ -23,9 +23,19 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
 
 var createProfile = function() {
   //Switch views
-  var $profileContainer = document.getElementById('profile-container');
-  $profileContainer.style.display = 'none';
-  var $newProfileContainer = document.getElementById('new-profile-container');
-  $newProfileContainer.style.display = 'block';
-
+  switchViews('profile-container', 'new-profile-container');
+  //Get inputs
+  var $form = document.getElementById('new-profile-form');
+  var $name = document.getElementById('new-name');
+  var $user = document.getElementById('new-user');
+  var $password = document.getElementById('new-password');
+  var $profilePicture = document.getElementById('new-profile-picture');
+  var $coverPhoto = document.getElementById('new-cover-photo');
+  var $work = document.getElementById('new-work');
+  var $school = document.getElementById('new-school');
+  var $home = document.getElementById('new-home');
+  var $interests = document.getElementById('new-interests');
+  var $bio = document.getElementById('new-bio');
+  var $quotes = document.getElementById('new-quotes');
+  var $submit = document.getElementById('profile-button');
 };
