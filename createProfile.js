@@ -9,7 +9,7 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
   this.school = school;
   this.home = home;
   this.interests = interests;
-  this.bio;
+  this.bio = bio;
   this.quotes = quotes;
   this.posts = [];
   this.friends = [];
@@ -21,21 +21,62 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
   }];
 };
 
+//Get inputs
+var $form = document.getElementById('new-profile-form');
+var $name = document.getElementById('new-name');
+var $user = document.getElementById('new-user');
+var $password = document.getElementById('new-password');
+var $profilePicture = document.getElementById('new-profile-picture');
+var $coverPhoto = document.getElementById('new-cover-photo');
+var $work = document.getElementById('new-work');
+var $school = document.getElementById('new-school');
+var $home = document.getElementById('new-home');
+var $interests = document.getElementById('new-interests');
+var $bio = document.getElementById('new-bio');
+var $quotes = document.getElementById('new-quotes');
+var $submit = document.getElementById('profile-button');
+
 var createProfile = function() {
-  //Switch views
-  switchViews('profile-container', 'new-profile-container');
-  //Get inputs
-  var $form = document.getElementById('new-profile-form');
-  var $name = document.getElementById('new-name');
-  var $user = document.getElementById('new-user');
-  var $password = document.getElementById('new-password');
-  var $profilePicture = document.getElementById('new-profile-picture');
-  var $coverPhoto = document.getElementById('new-cover-photo');
-  var $work = document.getElementById('new-work');
-  var $school = document.getElementById('new-school');
-  var $home = document.getElementById('new-home');
-  var $interests = document.getElementById('new-interests');
-  var $bio = document.getElementById('new-bio');
-  var $quotes = document.getElementById('new-quotes');
-  var $submit = document.getElementById('profile-button');
+  name = $name.value;
+  user = $user.value;
+  password = $password.value;
+  profilePicture = $profilePicture.value;
+  coverPhoto = $coverPhoto.value;
+  work = $work.value;
+  school = $school.value;
+  home = $home.value;
+  interests = $interests.value;
+  bio = $bio.value;
+  quotes = $quotes.value;
+  for (var i = 0; i < profiles.length; i++) {
+    if(profiles[i].user === user) {
+      alert("That username is already in use. Please try again");
+      $user.value = '';
+      user = '';
+    };
+  };
+  if(!user || !name || !password) return;
+  var newUser = new CreateProfile (user, password, profilePicture, coverPhoto, name, work, school, home, interests, bio, quotes);
+  profiles.push(newUser);
 };
+
+var submitProfile = function(){
+  createProfile();
+  if (!$name.value || !$user.value || !$password.value) return;
+  switchViews('new-profile-container', 'profile-container');
+  currentUser = profiles[profiles.length-1];
+  currentProfile = profiles[profiles.length-1];
+  loginButton.textContent= 'Logout';
+  loginButton.removeEventListener('click', loginPress);
+  loginButton.addEventListener('click', logout);
+  $signup.style.display = 'none';
+  $friend.style.display = 'none';
+  content.innerHTML = '';
+  addTimeline();
+  updateProfile(currentProfile);
+};
+
+$form.addEventListener('submit', function(submit) {
+  submit.preventDefault(); //Prevents form reloading the page
+  submitProfile();
+});
