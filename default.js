@@ -148,8 +148,6 @@ var login = function () {
       if (currentUser === currentProfile) {
         $friend.style.display = 'none';
       } else if (!currentUser.friends.indexOf(currentProfile)) {
-        console.log(!currentUser.friends.indexOf(currentProfile));
-        console.log(currentUser.friends);
         $friend.textContent = 'Unfriend';
         $friend.addEventListener('click', removeFriend);
         $friend.removeEventListener('click', addFriend);
@@ -176,10 +174,7 @@ var loginPress = function() {
   login();
   //Remove elements
   content.innerHTML = '';
-  //Render page again with new info
-  if (currentUser !== 'none') {
-    currentProfile = currentUser;
-  };
+  //Render page again with new infos
   switchViews('new-profile-container', 'profile-container');
   addTimeline();
   updateProfile(currentProfile);
@@ -192,11 +187,14 @@ var logout = function() {
   //Remove elements
   content.innerHTML = '';
   //Reset profile
+  if (currentUser === currentProfile) {
+    $friend.style.display = 'none';
+  } else if (currentUser.friends.indexOf(currentProfile)) {
+    $friend.textContent = 'Unfriend';
+    $friend.addEventListener('click', removeFriend);
+    $friend.removeEventListener('click', addFriend);
+  };
   currentUser = 'none';
-  $friend.style.display= 'block';
-  $friend.textContent= 'Add friend';
-  $friend.removeEventListener('click', removeFriend);
-  $friend.addEventListener('click', addFriend);
   addTimeline();
   updateProfile(currentProfile);
   loginButton.textContent= 'Login';
