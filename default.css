@@ -217,3 +217,44 @@ body {
 #new-profile-container {
   display: none;
 }
+
+#profile-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 35px;
+  margin-top: 35px;
+}
+
+.profile-input {
+  display: block;
+  position: relative;
+  right: 60%;
+  margin-bottom: 50px;
+  text-align: right;
+}
+
+.profile-input input,
+.profile-textarea textarea {
+  position: absolute;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.profile-textarea {
+  display: block;
+  position: relative;
+  right: 60%;
+  margin-bottom: 200px;
+  text-align: right;
+}
+
+.profile-textarea textarea {
+    height: 150px;
+}
+
+#profile-button {
+  display: block;
+  position: relative;
+  left: 41%;
+  text-align: right;
+}

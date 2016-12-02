@@ -110,6 +110,14 @@ function postObject(text) {
   this.whoLikes = [];
 };
 
+var switchViews = function(view1, view2) {
+  var $view1 = document.getElementById(view1);
+  $view1.style.display = 'none';
+  var $view2 = document.getElementById(view2);
+  $view2.style.display = 'block';
+}
+
+createProfile();
 
 var loginButton = document.getElementById('login');
 var currentProfile = profiles[0];
