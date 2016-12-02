@@ -146,8 +146,12 @@ var login = function () {
       console.log('hello');
       return;
     } else if (i === profiles.length-1) {
-      alert('Username not found. Please try again');
-      login();
+      var next = confirm('Username not found. Would you like to make a new profile?');
+      if (next) {
+        createProfile();
+      } else {
+        login();
+      };
     };
   };
 };
