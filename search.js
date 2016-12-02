@@ -6,32 +6,31 @@ var search = function(text) {
   //Fix text
   text = text.toLowerCase();
   text = text.trim();
-  var profile = Object.keys(profiles);
   //Empty array
   results = [];
   //Add results to return array
   //Name
   var name = '';
-  for (var i = 0; i < profile.length; i++) {
-    name = profiles[profile[i]].name.toLowerCase();
+  for (var i = 0; i < profiles.length; i++) {
+    name = profiles[i].name.toLowerCase();
     name = name.trim();
     if (!name.indexOf(text) ) {
-      results.push(profile[i]);
+      results.push(i);
     };
   };
   //Username
-  for (var i = 0; i < profile.length; i++) {
-    if (!profile[i].indexOf(text)) {
-      results.push(profile[i]);
+  for (var i = 0; i < profiles.length; i++) {
+    if (!profiles[i].user.indexOf(text)) {
+      results.push(i);
     };
   };
   //Bio
   var bio = '';
-  for (var i = 0; i < profile.length; i++) {
-    bio = profiles[profile[i]].bio.toLowerCase();
+  for (var i = 0; i < profiles.length; i++) {
+    bio = profiles[i].bio.toLowerCase();
     bio = bio.trim();
     if (!bio.indexOf(text) ) {
-      results.push(profile[i]);
+      results.push(i);
     };
   };
   //Posts (future update)
