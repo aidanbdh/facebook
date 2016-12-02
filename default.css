@@ -102,11 +102,8 @@ body {
   z-index: 3;
 }
 
-.profile-name {
-
-}
-
-#login {
+#login,
+#signup {
   float: right;
   margin-right: 16px;
 }
@@ -218,7 +215,7 @@ body {
   display: none;
 }
 
-#profile-title {
+.profile-title {
   text-align: center;
   font-size: 18px;
   margin-bottom: 35px;
@@ -250,6 +247,7 @@ body {
 
 .profile-textarea textarea {
     height: 150px;
+    resize: none;
 }
 
 #profile-button {
