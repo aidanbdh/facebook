@@ -149,10 +149,6 @@ var login = function () {
         $friend.style.display = 'none';
       } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
         unfriendEvent();
-      };
-      loginButton.textContent= 'Logout';
-      loginButton.removeEventListener('click', loginPress);
-      loginButton.addEventListener('click', logout);
       $signup.style.display = 'none';
       return;
     } else if (i === profiles.length-1) {

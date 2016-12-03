@@ -122,7 +122,7 @@ dropdown.addEventListener('click', function(event) {
       $friend.style.display = 'none';
     } else {
       friendEvent();
-    }
+    };
     dropdown.style.display = 'none';
     dropdown.innerHTML = '';
   };
