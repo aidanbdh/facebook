@@ -37,6 +37,7 @@ var $quotes = document.getElementById('new-quotes');
 var $submit = document.getElementById('profile-button');
 
 var createProfile = function() {
+<<<<<<< HEAD
   var name = $name.value;
   var user = $user.value;
   var password = $password.value;
@@ -48,6 +49,19 @@ var createProfile = function() {
   var interests = $interests.value;
   var bio = $bio.value;
   var quotes = $quotes.value;
+=======
+  name = $name.value;
+  user = $user.value;
+  password = $password.value;
+  profilePicture = $profilePicture.value;
+  coverPhoto = $coverPhoto.value;
+  work = $work.value;
+  school = $school.value;
+  home = $home.value;
+  interests = $interests.value;
+  bio = $bio.value;
+  quotes = $quotes.value;
+>>>>>>> 8b0417208b75a1d685f2f582a9f61f60b0b4a166
   for (var i = 0; i < profiles.length; i++) {
     if(profiles[i].user === user) {
       alert("That username is already in use. Please try again");

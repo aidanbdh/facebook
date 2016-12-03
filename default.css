@@ -59,7 +59,6 @@ body {
   position: relative;
   height: 24px;
   width: 24px;
-<<<<<<< HEAD
   float: right;
   margin-right: 24px;
 }
@@ -148,11 +147,8 @@ body {
   z-index: 3;
 }
 
-.profile-name {
-
-}
-
-#login {
+#login,
+#signup {
   float: right;
 >>>>>>> 62e91d12320a01a40ced9395cd6794108a287bbd
   margin-right: 16px;
