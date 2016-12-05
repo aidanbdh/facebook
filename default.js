@@ -110,8 +110,13 @@ function postObject(text) {
   this.whoLikes = [];
 };
 
+var switchViews = function(view, newView) {
+  var $view1 = document.getElementById(view);
+  $view1.style.display = 'none';
+  var $view2 = document.getElementById(newView);
+  $view2.style.display = 'block';
+};
 
-var loginButton = document.getElementById('login');
 var currentProfile = profiles[0];
 var currentUser = 'none';
 
@@ -127,6 +132,9 @@ $homePage.addEventListener('click', function(e) {
   };
 });
 
+var loginButton = document.getElementById('login');
+var $signup = document.getElementById('signup');
+
 //Login
 var login = function () {
   var username = prompt('What is your username?');
@@ -139,15 +147,22 @@ var login = function () {
       currentUser = profiles[i];
       if (currentUser === currentProfile) {
         $friend.style.display = 'none';
+      } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
+        unfriendEvent();
       };
       loginButton.textContent= 'Logout';
       loginButton.removeEventListener('click', loginPress);
       loginButton.addEventListener('click', logout);
-      console.log('hello');
+      $signup.style.display = 'none';
       return;
     } else if (i === profiles.length-1) {
-      alert('Username not found. Please try again');
-      login();
+      var next = confirm('Username not found. Would you like to make a new profile?');
+      if (next) {
+        switchViews('profile-container', 'new-profile-container');
+        $user.value = username;
+      } else {
+        login();
+      };
     };
   };
 };
@@ -157,11 +172,8 @@ var loginPress = function() {
   login();
   //Remove elements
   content.innerHTML = '';
-  //Render page again with new info
-  if (currentUser !== 'none') {
-    currentProfile = currentUser;
-    $friend.style.display = 'none';
-  };
+  //Render page again with new infos
+  switchViews('new-profile-container', 'profile-container');
   addTimeline();
   updateProfile(currentProfile);
 }
@@ -175,15 +187,20 @@ var logout = function() {
   //Reset profile
   currentUser = 'none';
   $friend.style.display= 'block';
-  $friend.textContent= 'Add friend';
+  friendEvent();
   addTimeline();
   updateProfile(currentProfile);
   loginButton.textContent= 'Login';
   loginButton.addEventListener('click', loginPress);
   loginButton.removeEventListener('click', logout);
+  $signup.style.display = 'inline-block';
 };
 
 loginButton.addEventListener('click', loginPress);
+
+$signup.addEventListener('click', function(e) {
+  switchViews('profile-container', 'new-profile-container');
+});
 
 profiles[0].posts.push(new postObject('Name: aidanbdh Password: ilovecode'));
 profiles[0].posts.push(new postObject('Name: ronperris Password: jqueryforlife'));

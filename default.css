@@ -102,11 +102,53 @@ body {
   z-index: 3;
 }
 
-.profile-name {
-
+#login,
+#signup {
+  float: right;
+  margin-right: 24px;
 }
 
-#login {
+#bubble {
+  display: none;
+  position: absolute;
+  top: 24px;
+  right: 86px;
+  background-color: red;
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+}
+
+#notification {
+  display: none;
+  position: absolute;
+  right: 4px;
+  top: 42px;
+  height: 176px;
+  width: 390px;
+  background-color: rgb(255,255,255);
+  border-style: solid;
+  border-top-style: none;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: rgb(186,186,186);
+  z-index: 2;
+}
+
+#triangle {
+  position: absolute;
+  top: -16px;;
+  right: 85px;
+  background-color: rgba(255,255,255,0);
+  border-style: solid;
+  border-width: 8px;
+  border-color: rgba(255,255,255,0);
+  border-bottom-color: rgb(255,255,255);
+  z-index: 3;
+}
+
+#login,
+#signup {
   float: right;
   margin-right: 16px;
 }
@@ -212,4 +254,50 @@ body {
   right: 24px;
   font-size: 12px;
   font-family: sans-serif;
+}
+
+#new-profile-container {
+  display: none;
+}
+
+.profile-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 35px;
+  margin-top: 35px;
+}
+
+.profile-input {
+  display: block;
+  position: relative;
+  right: 60%;
+  margin-bottom: 50px;
+  text-align: right;
+}
+
+.profile-input input,
+.profile-textarea textarea {
+  position: absolute;
+  width: 200px;
+  margin-left: 10px;
+}
+
+.profile-textarea {
+  display: block;
+  position: relative;
+  right: 60%;
+  margin-bottom: 200px;
+  text-align: right;
+}
+
+.profile-textarea textarea {
+    height: 150px;
+    resize: none;
+}
+
+#profile-button {
+  display: block;
+  position: relative;
+  left: 41%;
+  text-align: right;
 }

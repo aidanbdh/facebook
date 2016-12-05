@@ -9,6 +9,7 @@
       <a href="#" id="homepage">Home</a>
       <input type="search" value="Search" id="search">
       <div id="dropdown"></div>
+      <a href="#" id="signup">Sign up</a>
       <a href="#" id="login">Login</a>
       <img src="http://www.freeiconspng.com/uploads/bell-icon-0.png" alt="!" id="bell">
       <span id="bubble"></span>
@@ -41,7 +42,26 @@
         <div id="content"></div>
       </div>
     </div>
+    <div class="container" id="new-profile-container">
+      <form id="new-profile-form">
+        <h5 class="profile-title">Please enter your new profile information</h5>
+        <label class="profile-input">*Name<input type="text" value="" id="new-name"></label>
+        <label class="profile-input">*Username<input type="text" value="" id="new-user"></label>
+        <label class="profile-input">*Password<input type="text" value="" id="new-password"></label>
+        <label class="profile-input">Profile Picture (As image web adress)<input type="url" id="new-profile-picture"></label>
+        <label class="profile-input">Cover Picture (As image web adress)<input type="url" id="new-cover-photo"></label>
+        <label class="profile-input">Work<input type="text" value="" id="new-work"></label>
+        <label class="profile-input">School<input type="text" value="" id="new-school"></label>
+        <label class="profile-input">Home<input type="text" value="" id="new-home"></label>
+        <label class="profile-input">Interests<input type="text" value="" id="new-interests"></label>
+        <label class="profile-textarea">Bio<textarea value="" id="new-bio"></textarea></label>
+        <label class="profile-textarea">Favorite Quote<textarea value="" id="new-quotes"></textarea></label>
+        <h5 class="profile-title">* Required field</h5>
+        <button id="profile-button" type="submit" name="submit">Submit</button>
+      </form>
+    </div>
     <script src="timeline.js"></script>
+    <script src="createProfile.js"></script>
     <script src="profile.js"></script>
     <script src="search.js"></script>
     <script src="friends.js"></script>
