@@ -13,7 +13,44 @@ var profiles = [
     interests: [],
     bio: '',
     quotes:'',
-    posts: [],
+    posts: [
+      {
+        name: 'Aidan Harvey',
+        photo: 'https://avatars.slack-edge.com/2016-11-14/105015263574_c9c95137b4c2ea5b822d_512.png',
+        'year': 2016,
+        'month': 10,
+        'day': 31,
+        'hour': 17,
+        'minute': 0,
+        text: 'Name: aidanbdh Password: ilovecode',
+        likes: 0,
+        whoLikes: []
+      },
+      {
+        name: 'Ron Perris',
+        photo: 'https://avatars3.githubusercontent.com/u/963451?v=3&s=400',
+        'year': 2016,
+        'month': 11,
+        'day': -3,
+        'hour': 15,
+        'minute': 0,
+        text: 'Name: ronperris Password: jqueryforlife',
+        likes: 0,
+        whoLikes: []
+      },
+      {
+        name: 'Tim Davis',
+        photo: 'https://avatars.slack-edge.com/2016-11-14/105043765510_b72b4ba7f80738e50dab_512.jpg',
+        'year': 2016,
+        'month': 11,
+        'day': -3,
+        'hour': 11,
+        'minute': 0,
+        text: 'Name: timdavis Password: $$$',
+        likes: 0,
+        whoLikes: []
+      }
+    ],
     friends: [],
     followers: [],
     notifications: []
@@ -104,7 +141,22 @@ var profiles = [
   }
 ];
 
+function DateFormat(year,month,day,hour,minute) {
+  this.year = year;
+  this.month = month;
+  this.day = day;
+  this.hour = hour;
+  this.minute = minute;
+};
+
 function postObject(text) {
+  this.name = currentUser.name;
+  this.photo = currentUser.profilePicture;
+  this.year = moment().get('year');
+  this.month = moment().get('month');
+  this.day = moment().get('day');
+  this.hour = moment().get('hour');
+  this.minute = moment().get('minute');
   this.text = text;
   this.likes = 0;
   this.whoLikes = [];
@@ -201,10 +253,6 @@ loginButton.addEventListener('click', loginPress);
 $signup.addEventListener('click', function(e) {
   switchViews('profile-container', 'new-profile-container');
 });
-
-profiles[0].posts.push(new postObject('Name: aidanbdh Password: ilovecode'));
-profiles[0].posts.push(new postObject('Name: ronperris Password: jqueryforlife'));
-profiles[0].posts.push(new postObject('Name: timdavis Password: $$$'));
 
 updateProfile(currentProfile);
 addTimeline();

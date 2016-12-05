@@ -2,10 +2,22 @@
 var formtext = document.getElementById('posttext');
 var form = document.getElementById('timeline');
 var content = document.getElementById('content');
-//populatePostsize Functions
-var createPost = function(text,likes,number) {
+
+var createPost = function(name,photo,year,month,day,hour,minute,text,likes,number) {
   var newDiv = document.createElement('div');
   newDiv.className = 'post';
+  var newImg = document.createElement('img');
+  newImg.setAttribute('src', photo);
+  newImg.classList.add('post-picture');
+  newImg.setAttribute('data-user', currentUser)
+  var newUser = document.createElement('h4');
+  newUser.classList.add('post-username');
+  newUser.setAttribute('data-user', currentUser)
+  var newUserText = document.createTextNode(name);
+  var newDate = document.createElement('h6');
+  newDate.classList.add('post-date');
+  var dateText = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
+  var newDateText = document.createTextNode(dateText)
   var newEl = document.createElement('p');
   var newText = document.createTextNode(text);
   var likeNumberContainer = document.createElement('a');
@@ -13,6 +25,11 @@ var createPost = function(text,likes,number) {
   var likeNumber = document.createTextNode('Like ' + likes);
   likeNumberContainer.setAttribute('data-postnumber', number);
   newDiv.appendChild(newEl);
+  newDiv.appendChild(newImg);
+  newDiv.appendChild(newUser);
+  newUser.appendChild(newUserText);
+  newDiv.appendChild(newDate);
+  newDate.appendChild(newDateText);
   newEl.appendChild(newText);
   newDiv.appendChild(likeNumberContainer);
   likeNumberContainer.appendChild(likeNumber);
@@ -20,7 +37,7 @@ var createPost = function(text,likes,number) {
 }
 var populatePosts = function() {
   for (var i = currentProfile.posts.length-1; i > -1; i--) {
-    content.appendChild(createPost(currentProfile.posts[i].text, currentProfile.posts[i].likes ,i));
+    content.appendChild(createPost(currentProfile.posts[i].name, currentProfile.posts[i].photo, currentProfile.posts[i].year, currentProfile.posts[i].month, currentProfile.posts[i].day, currentProfile.posts[i].hour, currentProfile.posts[i].minute, currentProfile.posts[i].text, currentProfile.posts[i].likes ,i));
   };
 };
 //Post info object constructor
@@ -44,7 +61,7 @@ var addTimeline = function() {
   //Add and update post function
   removeListener();
   var addPost = function() {
-    if(formtext.value !== formtext.defaultValue) {
+    if(formtext.value !== formtext.defaultValue && currentUser !== 'none') {
       //Add text to posts array
       currentProfile.posts.push(new postObject(formtext.value));
       //Send to notifications of friends
@@ -54,12 +71,14 @@ var addTimeline = function() {
       //Add a new post
       var formChild = content.firstChild;
       if (formChild) {
-        content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), formChild);
+        content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), formChild);
       } else {
-        content.appendChild(createPost(currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1));
+        content.appendChild(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), currentProfile.posts.length-1);
       };
       //Reset form
       formtext.value = formtext.defaultValue;
+    } else if (currentUser === 'none') {
+      login();
     };
   };
   removeListener = setListener(form, 'submit', addPost);
@@ -95,5 +114,5 @@ content.addEventListener('click', function(event) {
     event.target.dataset.likes--;
     var likes = event.target.dataset.likes;
     event.target.textContent = 'Like ' + likes;
-    };
+  };
 });
