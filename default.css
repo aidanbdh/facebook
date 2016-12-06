@@ -72,9 +72,10 @@ body {
 
 #bubble {
   display: none;
-  position: absolute;
-  top: 24px;
-  right: 86px;
+  position: relative;
+  float: right;
+  left: 24px;
+  top: 16px;
   background-color: red;
   height: 8px;
   width: 8px;

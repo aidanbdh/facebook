@@ -26,6 +26,7 @@ var preview = function(notification) {
 };
 
 $triangle = document.getElementById('triangle');
+$bubble = document.getElementById('bubble');
 
 var notify = function() {
   $notifications.style.display = 'block';
@@ -34,20 +35,31 @@ var notify = function() {
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
     $notifications.appendChild(preview(currentUser.notifications[i]));
   };
+  if(currentUser.notifications.length === 0) return;
+  $bubble.style.display = 'block';
 };
 
 $bell.addEventListener('click', notify);
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
-  if (event.target !== $notifications && event.target!== $bell) {
-    $triangle.style.display = 'none';
-    $notifications.style.display = 'none';
+  if (event.target === $notifications || event.target === $bell) return;
+  $triangle.style.display = 'none';
+  $notifications.style.display = 'none';
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
   };
 });
 
 $notifications.addEventListener('click', function(event) {
   if(!event.target.dataset.read) return;
   currentUser.notifications.splice(event.target.dataset.read,1);
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
+  };
 });
 
 //Friending

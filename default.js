@@ -192,6 +192,11 @@ $homePage.addEventListener('click', function(e) {
   addTimeline();
   updateProfile(currentProfile);
   $friend.style.display = 'none';
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
+  };
 });
 
 var loginButton = document.getElementById('login');
@@ -216,6 +221,11 @@ var login = function () {
       loginButton.removeEventListener('click', loginPress);
       loginButton.addEventListener('click', logout);
       $signup.style.display = 'none';
+      if(currentUser.notifications.length === 0) {
+        $bubble.style.display = 'none';
+      } else {
+        $bubble.style.display = 'block';
+      };
       return;
     } else if (i === profiles.length-1) {
       var next = confirm('Username not found. Would you like to make a new profile?');
@@ -256,6 +266,7 @@ var logout = function() {
   loginButton.addEventListener('click', loginPress);
   loginButton.removeEventListener('click', logout);
   $signup.style.display = 'inline-block';
+  $bubble.style.display = 'none';
 };
 
 loginButton.addEventListener('click', loginPress);
@@ -287,4 +298,9 @@ document.addEventListener('click', function(event) {
   };
   dropdown.style.display = 'none';
   dropdown.innerHTML = '';
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
+  };
 });

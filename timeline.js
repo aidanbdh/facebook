@@ -68,6 +68,7 @@ var addTimeline = function() {
       //Send to notifications of friends
       for (var i = 0; i < currentProfile.followers.length; i++) {
         currentProfile.followers[i].notifications.push(new PostNotification());
+        if(currentProfile.followers[i] === currentUser) {$bubble.style.display= 'block';};
       };
       //Add a new post
       var formChild = content.firstChild;

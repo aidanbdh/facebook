@@ -71,6 +71,7 @@ var submitProfile = function(){
   addTimeline();
   updateProfile(currentProfile);
   currentUser.notifications.push({text: 'Welcome to Cranium Literature!', username: profiles[0]})
+  $bubble.style.display = 'block';
 };
 
 $form.addEventListener('submit', function(submit) {
