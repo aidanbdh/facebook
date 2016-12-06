@@ -3,40 +3,39 @@ var results = [];
 
 //Find results and add to array
 var search = function(text) {
-  //Fix text
-  text = text.toLowerCase();
-  text = text.trim();
-  //Empty array
   results = [];
-  //Add results to return array
-  //Name
-  var name = '';
-  for (var i = 0; i < profiles.length; i++) {
-    name = profiles[i].name.toLowerCase();
-    name = name.trim();
-    if (!name.indexOf(text) ) {
-      results.push(i);
+  text = text.toLowerCase();
+  var searchLength;
+  if (text.length <= 3) {
+    searchLength = 1;
+  } else {
+    searchLength = text.length-3;
+  };
+  for (var j = 0; j < searchLength; j++) {
+    text = text.trim();
+    text = text.slice(j);
+    text = text.trim();
+    //Name
+    var name;
+    for (var i = 0; i < profiles.length; i++) {
+      name = profiles[i].name.toLowerCase();
+      for (var k = 0; k < name.length-3; k++) {
+        if (name.indexOf(text,k) !== -1) {
+          results.push(i);
+        };
+      };
+    };
+    //Username
+    var user;
+    for (var i = 0; i < profiles.length; i++) {
+      user = profiles[i].user.toLowerCase();
+      for (var k = 0; k < user.length-3; k++) {
+        if (user.indexOf(text,k) !== -1) {
+          results.push(i);
+        };
+      };
     };
   };
-  //Username
-  for (var i = 0; i < profiles.length; i++) {
-    if (!profiles[i].user.indexOf(text)) {
-      results.push(i);
-    };
-  };
-  //Bio
-  var bio = '';
-  for (var i = 0; i < profiles.length; i++) {
-    bio = profiles[i].bio.toLowerCase();
-    bio = bio.trim();
-    if (!bio.indexOf(text) ) {
-      results.push(i);
-    };
-  };
-  //Posts (future update)
-
-  //None (future update)
-
   //Remove doubles
   var newResults = [];
   for (var i = 0; i < results.length; i++) {
@@ -115,6 +114,7 @@ var doSearch = function() {
   dropdown.innerHTML = '';
   //Add results to Dom
   var views = searchBox();
+  console.log(views);
   for (var i = 0; i < views.length; i++) {
     dropdown.appendChild(views[i]);
   }
@@ -166,9 +166,10 @@ var searchValue = searchText.value;
 document.addEventListener('click', function(event) {
   if(event.target.id !== 'more-results') return;
   console.log(searchText.value);
+  $searchResults.innerHTML = '';
   search(searchValue);
   switchViews('search-container');
-  var views = searchPage();
+  views = searchPage();
   for (var i = 0; i < views.length; i++) {
     $searchResults.appendChild(views[i]);
   }
@@ -176,7 +177,8 @@ document.addEventListener('click', function(event) {
 
 //Default searchbox text
 searchText.addEventListener('focus', function(e) {
-  searchText.value = ' ';
+  searchText.value = '';
+  doSearch();
 });
 searchText.addEventListener('blur', function(e) {
   searchValue = searchText.value;

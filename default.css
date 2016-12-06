@@ -338,26 +338,29 @@ body {
   position: relative;
   top: 48px;
   right: 5%;
-  height: 200px;
+  margin-bottom: 36px;
+  height: 144px;
   width: 90%;
   background-color: white;
 }
 
 #search-results div h5 {
   position: absolute;
-  top: -12px;
-  left: 134px;
+  top: 0px;
+  left: 136px;
   margin: 8px;
+  font-size: 18px;
 }
 
 #search-results div p {
   position: absolute;
-  top: 16px;
-  left: 134px;
+  top: 18px;
+  left: 142px;
 }
 
 .search-picture {
   position: absolute;
+  margin: 8px;
   height: 128px;
   width: 128px;
 }
