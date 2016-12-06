@@ -114,7 +114,6 @@ var doSearch = function() {
   dropdown.innerHTML = '';
   //Add results to Dom
   var views = searchBox();
-  console.log(views);
   for (var i = 0; i < views.length; i++) {
     dropdown.appendChild(views[i]);
   }
@@ -136,13 +135,13 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(even
 //Dynamic searchText
 searchText.addEventListener('input', doSearch);
 
+
 //Navigates to search page
 var $searchResults = document.getElementById('search-results');
 var searchValue = searchText.value;
 
 document.addEventListener('click', function(event) {
   if(event.target.id !== 'more-results') return;
-  console.log(searchText.value);
   $searchResults.innerHTML = '';
   search(searchValue);
   switchViews('search-container');
