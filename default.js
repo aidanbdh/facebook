@@ -162,11 +162,14 @@ function postObject(text) {
   this.whoLikes = [];
 };
 
-var switchViews = function(view, newView) {
-  var $view1 = document.getElementById(view);
+var currentView = 'profile-container';
+
+var switchViews = function(newView) {
+  var $view1 = document.getElementById(currentView);
   $view1.style.display = 'none';
   var $view2 = document.getElementById(newView);
   $view2.style.display = 'block';
+  currentView = newView;
 };
 
 var currentProfile = profiles[0];
@@ -210,7 +213,7 @@ var login = function () {
     } else if (i === profiles.length-1) {
       var next = confirm('Username not found. Would you like to make a new profile?');
       if (next) {
-        switchViews('profile-container', 'new-profile-container');
+        switchViews('new-profile-container');
         $user.value = username;
       } else {
         login();
@@ -225,7 +228,7 @@ var loginPress = function() {
   //Remove elements
   content.innerHTML = '';
   //Render page again with new infos
-  switchViews('new-profile-container', 'profile-container');
+  switchViews('profile-container');
   addTimeline();
   updateProfile(currentProfile);
 }
@@ -251,7 +254,7 @@ var logout = function() {
 loginButton.addEventListener('click', loginPress);
 
 $signup.addEventListener('click', function(e) {
-  switchViews('profile-container', 'new-profile-container');
+  switchViews('new-profile-container');
 });
 
 updateProfile(currentProfile);

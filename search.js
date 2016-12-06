@@ -71,8 +71,38 @@ var searchBox = function() {
     view.appendChild(name);
     views.push(view);
   };
+  var moreResults = document.createElement('p');
+  var resultsText = document.createTextNode('See More Results');
+  moreResults.appendChild(resultsText);
+  moreResults.id = 'more-results';
+  views.push(moreResults);
   return views;
  };
+
+var searchPage = function() {
+  var views = [];
+  for (var i = 0; i < results.length; i++) {
+   var result = results[i];
+   var view = document.createElement('div');
+   view.setAttribute('data-dropdown', result);
+   var thumbnail = document.createElement('img');
+   thumbnail.setAttribute('data-dropdown', result);
+   thumbnail.setAttribute('src', profiles[result].profilePicture);
+   thumbnail.classList.add('search-picture');
+   view.appendChild(thumbnail);
+   var name = document.createElement('h5');
+   name.setAttribute('data-dropdown', result);
+   name.textContent = profiles[result].name;
+   name.classList.add('search-name');
+   view.appendChild(name);
+   var bio = document.createElement('p');
+   bio.setAttribute('data-dropdown', result);
+   bio.textContent = profiles[result].bio;
+   view.appendChild(bio);
+   views.push(view);
+ };
+ return views;
+};
 
 var searchText = document.getElementById('search');
 var dropdown = document.getElementById('dropdown');
@@ -114,6 +144,7 @@ dropdown.addEventListener('click', function(event) {
     addTimeline();
     updateProfile(currentProfile);
     $friend.style.display = 'block';
+    switchViews('profile-container');
     if (currentUser === 'none') {
       friendEvent();
     } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
@@ -128,10 +159,26 @@ dropdown.addEventListener('click', function(event) {
   };
 });
 
+//Navigates to search page
+var $searchResults = document.getElementById('search-results');
+var searchValue = searchText.value;
+
+document.addEventListener('click', function(event) {
+  if(event.target.id !== 'more-results') return;
+  console.log(searchText.value);
+  search(searchValue);
+  switchViews('search-container');
+  var views = searchPage();
+  for (var i = 0; i < views.length; i++) {
+    $searchResults.appendChild(views[i]);
+  }
+});
+
 //Default searchbox text
 searchText.addEventListener('focus', function(e) {
-  searchText.value = '';
+  searchText.value = ' ';
 });
 searchText.addEventListener('blur', function(e) {
+  searchValue = searchText.value;
   searchText.value = searchText.defaultValue;
 });

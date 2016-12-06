@@ -63,7 +63,7 @@ var createProfile = function() {
 var submitProfile = function(){
   createProfile();
   if (!$name.value || !$user.value || !$password.value) return;
-  switchViews('new-profile-container', 'profile-container');
+  switchViews('profile-container');
   currentUser = profiles[profiles.length-1];
   currentProfile = profiles[profiles.length-1];
   loginButton.textContent= 'Logout';

@@ -27,7 +27,7 @@ body {
   left: 50vw;
   transform: translate(-50%);
   width: 390px;
-  height: 176px;
+  height: 200px;
   padding: 4px;
   background-color: white;
   border-style: solid;
@@ -40,6 +40,13 @@ body {
 
 #dropdown div {
   height: 60px;
+}
+
+#more-results {
+  margin: 0px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .thumbnail {
@@ -325,4 +332,32 @@ body {
   position: relative;
   left: 41%;
   text-align: right;
+}
+
+#search-results div {
+  position: relative;
+  top: 48px;
+  right: 5%;
+  height: 200px;
+  width: 90%;
+  background-color: white;
+}
+
+#search-results div h5 {
+  position: absolute;
+  top: -12px;
+  left: 134px;
+  margin: 8px;
+}
+
+#search-results div p {
+  position: absolute;
+  top: 16px;
+  left: 134px;
+}
+
+.search-picture {
+  position: absolute;
+  height: 128px;
+  width: 128px;
 }
