@@ -19,8 +19,11 @@ var preview = function(notification) {
   return view;
 };
 
+$triangle = document.getElementById('triangle');
+
 var notify = function() {
   $notifications.style.display = 'block';
+  $triangle.style.display = 'block';
   $notifications.innerHTML = ''
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
     $notifications.appendChild(preview(currentUser.notifications[i]));
@@ -32,6 +35,7 @@ $bell.addEventListener('click', notify);
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
   if (event.target !== $notifications && event.target!== $bell) {
     $notifications.style.display = 'none';
+    $triangle.style.display = 'none';
   };
 });
 

@@ -97,18 +97,6 @@ body {
   z-index: 2;
 }
 
-#triangle {
-  position: absolute;
-  top: -16px;;
-  right: 85px;
-  background-color: rgba(255,255,255,0);
-  border-style: solid;
-  border-width: 8px;
-  border-color: rgba(255,255,255,0);
-  border-bottom-color: rgb(255,255,255);
-  z-index: 3;
-}
-
 #login,
 #signup {
   float: right;
@@ -144,8 +132,9 @@ body {
 
 #triangle {
   position: absolute;
-  top: -16px;;
-  right: 85px;
+  display: none;
+  top: 26px;;
+  right: 156px;
   background-color: rgba(255,255,255,0);
   border-style: solid;
   border-width: 8px;
