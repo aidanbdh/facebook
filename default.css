@@ -131,10 +131,13 @@ body {
 }
 
 #triangle {
-  position: absolute;
   display: none;
-  top: 26px;;
-  right: 156px;
+  position: relative;
+  float: right;
+  left: 20px;
+  top: 18px;
+  height: 0px;
+  width: 0px;
   background-color: rgba(255,255,255,0);
   border-style: solid;
   border-width: 8px;

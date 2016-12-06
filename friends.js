@@ -39,6 +39,9 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(even
   };
 });
 
+//Triangle adjustment
+//s$triangle.style.x = $
+
 //Friending
 
 var $friend = document.getElementById('friend');

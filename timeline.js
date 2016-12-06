@@ -3,16 +3,18 @@ var formtext = document.getElementById('posttext');
 var form = document.getElementById('timeline');
 var content = document.getElementById('content');
 
-var createPost = function(name,photo,year,month,day,hour,minute,text,likes,number) {
+var createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
   var newDiv = document.createElement('div');
   newDiv.className = 'post';
   var newImg = document.createElement('img');
   newImg.setAttribute('src', photo);
   newImg.classList.add('post-picture');
-  newImg.setAttribute('data-user', currentUser)
+  newImg.setAttribute('data-user', currentUser);
+  newImg.setAttribute('data-navigation', navigation);
   var newUser = document.createElement('h4');
   newUser.classList.add('post-username');
   newUser.setAttribute('data-user', currentUser)
+  newUser.setAttribute('data-navigation', navigation);
   var newUserText = document.createTextNode(name);
   var newDate = document.createElement('h6');
   newDate.classList.add('post-date');
@@ -37,7 +39,7 @@ var createPost = function(name,photo,year,month,day,hour,minute,text,likes,numbe
 }
 var populatePosts = function() {
   for (var i = currentProfile.posts.length-1; i > -1; i--) {
-    content.appendChild(createPost(currentProfile.posts[i].name, currentProfile.posts[i].photo, currentProfile.posts[i].year, currentProfile.posts[i].month, currentProfile.posts[i].day, currentProfile.posts[i].hour, currentProfile.posts[i].minute, currentProfile.posts[i].text, currentProfile.posts[i].likes ,i));
+    content.appendChild(createPost(currentProfile.posts[i].name, currentProfile.posts[i].photo, currentProfile.posts[i].year, currentProfile.posts[i].month, currentProfile.posts[i].day, currentProfile.posts[i].hour, currentProfile.posts[i].minute, currentProfile.posts[i].text, currentProfile.posts[i].likes , i, currentProfile.posts[i].navigation));
   };
 };
 //Post info object constructor
@@ -71,9 +73,9 @@ var addTimeline = function() {
       //Add a new post
       var formChild = content.firstChild;
       if (formChild) {
-        content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), formChild);
+        content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1, currentProfile.posts[currentProfile.posts.length-1].navigation), formChild);
       } else {
-        content.appendChild(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1), currentProfile.posts.length-1);
+        content.appendChild(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1, currentProfile.posts[currentProfile.posts.length-1].navigation), currentProfile.posts.length-1);
       };
       //Reset form
       formtext.value = formtext.defaultValue;

@@ -24,7 +24,8 @@ var profiles = [
         'minute': 0,
         text: 'Name: aidanbdh Password: ilovecode',
         likes: 0,
-        whoLikes: []
+        whoLikes: [],
+        navigation: 1
       },
       {
         name: 'Ron Perris',
@@ -36,7 +37,8 @@ var profiles = [
         'minute': 0,
         text: 'Name: ronperris Password: jqueryforlife',
         likes: 0,
-        whoLikes: []
+        whoLikes: [],
+        navigation: 2
       },
       {
         name: 'Tim Davis',
@@ -48,7 +50,8 @@ var profiles = [
         'minute': 0,
         text: 'Name: timdavis Password: $$$',
         likes: 0,
-        whoLikes: []
+        whoLikes: [],
+        navigation: 3
       }
     ],
     friends: [],
@@ -160,7 +163,9 @@ function postObject(text) {
   this.text = text;
   this.likes = 0;
   this.whoLikes = [];
+  this.navigation = profiles.indexOf(currentUser);
 };
+
 
 var currentView = 'profile-container';
 
@@ -178,13 +183,15 @@ var currentUser = 'none';
 //HomeButton
 var $homePage = document.getElementById('homepage');
 $homePage.addEventListener('click', function(e) {
-  if(currentUser !== 'none') {
-    currentProfile = currentUser;
-    content.innerHTML = '';
-    addTimeline();
-    updateProfile(currentProfile);
-    $friend.style.display = 'none';
-  };
+  currentProfile = profiles[0];
+  addTimeline();
+  switchViews('profile-container');
+  if (currentUser === 'none') return
+  currentProfile = currentUser;
+  content.innerHTML = '';
+  addTimeline();
+  updateProfile(currentProfile);
+  $friend.style.display = 'none';
 });
 
 var loginButton = document.getElementById('login');
@@ -256,6 +263,28 @@ loginButton.addEventListener('click', loginPress);
 $signup.addEventListener('click', function(e) {
   switchViews('new-profile-container');
 });
-
 updateProfile(currentProfile);
 addTimeline();
+
+//Navigating to other page
+document.addEventListener('click', function(event) {
+  if(!event.target.dataset.navigation) return;
+  switchViews('profile-container');
+  currentProfile = profiles[event.target.dataset.navigation];
+  content.innerHTML = '';
+  addTimeline();
+  updateProfile(currentProfile);
+  $friend.style.display = 'block';
+  switchViews('profile-container');
+  if (currentUser === 'none') {
+    friendEvent();
+  } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
+    unfriendEvent();
+  } else if (currentUser === currentProfile) {
+    $friend.style.display = 'none';
+  } else {
+    friendEvent();
+  };
+  dropdown.style.display = 'none';
+  dropdown.innerHTML = '';
+});

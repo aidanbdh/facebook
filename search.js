@@ -57,14 +57,14 @@ var searchBox = function() {
   for (var i = 0; i < l; i++) {
     var result = results[i];
     var view = document.createElement('div');
-    view.setAttribute('data-dropdown', result);
+    view.setAttribute('data-navigation', result);
     var thumbnail = document.createElement('img');
-    thumbnail.setAttribute('data-dropdown', result);
+    thumbnail.setAttribute('data-navigation', result);
     thumbnail.setAttribute('src', profiles[result].profilePicture);
     thumbnail.classList.add('thumbnail');
     view.appendChild(thumbnail);
     var name = document.createElement('p');
-    name.setAttribute('data-dropdown', result);
+    name.setAttribute('data-navigation', result);
     name.textContent = profiles[result].name;
     name.classList.add('listName');
     view.appendChild(name);
@@ -83,19 +83,19 @@ var searchPage = function() {
   for (var i = 0; i < results.length; i++) {
    var result = results[i];
    var view = document.createElement('div');
-   view.setAttribute('data-dropdown', result);
+   view.setAttribute('data-navigation', result);
    var thumbnail = document.createElement('img');
-   thumbnail.setAttribute('data-dropdown', result);
+   thumbnail.setAttribute('data-navigation', result);
    thumbnail.setAttribute('src', profiles[result].profilePicture);
    thumbnail.classList.add('search-picture');
    view.appendChild(thumbnail);
    var name = document.createElement('h5');
-   name.setAttribute('data-dropdown', result);
+   name.setAttribute('data-navigation', result);
    name.textContent = profiles[result].name;
    name.classList.add('search-name');
    view.appendChild(name);
    var bio = document.createElement('p');
-   bio.setAttribute('data-dropdown', result);
+   bio.setAttribute('data-navigation', result);
    bio.textContent = profiles[result].bio;
    view.appendChild(bio);
    views.push(view);
@@ -135,29 +135,6 @@ document.getElementsByTagName('body')[0].addEventListener('click', function(even
 
 //Dynamic searchText
 searchText.addEventListener('input', doSearch);
-
-//Navigates to other page
-dropdown.addEventListener('click', function(event) {
-  if (event.target.dataset.dropdown) {
-    currentProfile = profiles[event.target.dataset.dropdown];
-    content.innerHTML = '';
-    addTimeline();
-    updateProfile(currentProfile);
-    $friend.style.display = 'block';
-    switchViews('profile-container');
-    if (currentUser === 'none') {
-      friendEvent();
-    } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
-      unfriendEvent();
-    } else if (currentUser === currentProfile) {
-      $friend.style.display = 'none';
-    } else {
-      friendEvent();
-    };
-    dropdown.style.display = 'none';
-    dropdown.innerHTML = '';
-  };
-});
 
 //Navigates to search page
 var $searchResults = document.getElementById('search-results');
