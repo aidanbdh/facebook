@@ -14,11 +14,7 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
   this.posts = [];
   this.friends = [];
   this.followers = [];
-  this.notifications = [{
-    text: "Welcome to Cranium Literature!",
-    username: profiles[0],
-    read: false
-  }];
+  this.notifications = [];
 };
 
 //Get inputs
@@ -74,6 +70,7 @@ var submitProfile = function(){
   content.innerHTML = '';
   addTimeline();
   updateProfile(currentProfile);
+  currentUser.notifications.push({text: 'Welcome to Cranium Literature!', username: profiles[0], read: false})
 };
 
 $form.addEventListener('submit', function(submit) {

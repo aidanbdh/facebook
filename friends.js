@@ -8,13 +8,16 @@ var preview = function(notification) {
   var text = notification.text;
   var view = document.createElement('div');
   view.style.height = '60px';
+  view.setAttribute('data-navigation', profiles.indexOf(notification.username));
   var thumbnail = document.createElement('img');
   thumbnail.setAttribute('src', username.profilePicture);
+  thumbnail.setAttribute('data-navigation', profiles.indexOf(notification.username));
   thumbnail.classList.add('thumbnail');
   view.appendChild(thumbnail);
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
+  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
   view.appendChild(name);
   return view;
 };
