@@ -9,15 +9,18 @@ var preview = function(notification) {
   var view = document.createElement('div');
   view.style.height = '60px';
   view.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  view.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   var thumbnail = document.createElement('img');
   thumbnail.setAttribute('src', username.profilePicture);
   thumbnail.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   thumbnail.classList.add('thumbnail');
   view.appendChild(thumbnail);
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
-  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  name.setAttribute('data-navigation', profiles.indexOf(notification.username.name));
+  name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(name);
   return view;
 };
@@ -37,13 +40,15 @@ $bell.addEventListener('click', notify);
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
   if (event.target !== $notifications && event.target!== $bell) {
-    $notifications.style.display = 'none';
     $triangle.style.display = 'none';
+    $notifications.style.display = 'none';
   };
 });
 
-//Triangle adjustment
-//s$triangle.style.x = $
+$notifications.addEventListener('click', function(event) {
+  if(!event.target.dataset.read) return;
+  currentUser.notifications.splice(event.target.dataset.read,1);
+});
 
 //Friending
 

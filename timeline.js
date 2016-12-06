@@ -46,7 +46,6 @@ var populatePosts = function() {
 function PostNotification() {
   this.text = formtext.value;
   this.username = currentProfile;
-  this.read = false;
 };
 
 var setListener = function (target, type, listener) {

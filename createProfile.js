@@ -70,7 +70,7 @@ var submitProfile = function(){
   content.innerHTML = '';
   addTimeline();
   updateProfile(currentProfile);
-  currentUser.notifications.push({text: 'Welcome to Cranium Literature!', username: profiles[0], read: false})
+  currentUser.notifications.push({text: 'Welcome to Cranium Literature!', username: profiles[0]})
 };
 
 $form.addEventListener('submit', function(submit) {
