@@ -13,7 +13,7 @@ var search = function(text) {
   };
   for (var j = 0; j < searchLength; j++) {
     text = text.trim();
-    text = text.slice(j);
+    text = text.slice(0, text.length-j);
     text = text.trim();
     //Name
     var name;
