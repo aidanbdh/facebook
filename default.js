@@ -371,8 +371,8 @@ var profiles = [
   {
     user: 'littlejoebig',
     password: 'bigjoelittlejoe',
-    profilePicture: 'https://www.facebook.com/photo.php?fbid=10156310412210397&set=a.10150261923715397.502746.658185396&type=3',
-    coverPhoto: 'https://www.facebook.com/photo.php?fbid=10155452541740397&set=a.10151123911910397.788875.658185396&type=3',
+    profilePicture: 'https://scontent.xx.fbcdn.net/v/t1.0-0/p526x296/12249852_10156310412210397_8449129781333500823_n.jpg?oh=efad6062782072054bcd0a6dd15235bb&oe=58F1518D',
+    coverPhoto: 'https://scontent.xx.fbcdn.net/v/t1.0-9/11108941_10155452541740397_4157346515918516410_n.jpg?oh=64cee90d9c4386409b2766ce951b34e9&oe=58B89DFB',
     coverPosition:'center',
     name: 'Joe Gutierrez',
     work: 'None',
