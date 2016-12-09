@@ -45,7 +45,7 @@ var populatePosts = function() {
 //Post info object constructor
 function PostNotification() {
   this.text = formtext.value;
-  this.username = currentProfile;
+  this.username = currentUser;
 };
 
 var setListener = function (target, type, listener) {
@@ -66,9 +66,12 @@ var addTimeline = function() {
       //Add text to posts array
       currentProfile.posts.push(new postObject(formtext.value));
       //Send to notifications of friends
-      for (var i = 0; i < currentProfile.followers.length; i++) {
-        currentProfile.followers[i].notifications.push(new PostNotification());
-        if(currentProfile.followers[i] === currentUser) {$bubble.style.display= 'block';};
+      for (var i = 0; i < currentUser.followers.length; i++) {
+        currentUser.followers[i].notifications.push(new PostNotification());
+        //if(currentUser.followers[i] === currentUser) {$bubble.style.display= 'block';};
+      };
+      if(!currentUser.followers.indexOf(currentProfile)) {
+        currentProfile.notifications.push(new PostNotification);
       };
       //Add a new post
       var formChild = content.firstChild;
