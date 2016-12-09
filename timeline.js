@@ -68,9 +68,9 @@ var addTimeline = function() {
       //Send to notifications of friends
       for (var i = 0; i < currentUser.followers.length; i++) {
         currentUser.followers[i].notifications.push(new PostNotification());
-        //if(currentUser.followers[i] === currentUser) {$bubble.style.display= 'block';};
       };
-      if(!currentUser.followers.indexOf(currentProfile)) {
+      //Send to notifications of whoever's page the post is on
+      if(currentUser.followers.indexOf(currentProfile) === -1) {
         currentProfile.notifications.push(new PostNotification);
       };
       //Add a new post
