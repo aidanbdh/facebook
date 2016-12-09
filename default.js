@@ -452,6 +452,7 @@ $homePage.addEventListener('click', function(e) {
   switchViews('profile-container');
   if (currentUser === 'none') return;
   currentProfile = currentUser;
+  content.innerHTML = '';
   addTimeline();
   updateProfile(currentProfile);
   $friend.style.display = 'none';
