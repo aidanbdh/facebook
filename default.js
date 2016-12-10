@@ -4,7 +4,7 @@ var profiles = [
     user: 'guest',
     password: '',
     profilePicture: 'http://cdn2.hubspot.net/hub/126289/file-329555845-jpg/images/brain1.jpg',
-    coverPhoto: 'http://www.sarabestnutrition.com/wp-content/uploads/2016/03/brain3.png',
+    coverPhoto: '#',
     coverPosition:'center',
     name: 'Cranium Literature',
     work: 'Cranium Literature Inc.',
@@ -414,9 +414,9 @@ function DateFormat(year,month,day,hour,minute) {
   this.minute = minute;
 };
 
-function postObject(text) {
-  this.name = currentUser.name;
-  this.photo = currentUser.profilePicture;
+function postObject(user,text) {
+  this.name = user.name;
+  this.photo = user.profilePicture;
   this.year = moment().get('year');
   this.month = moment().get('month');
   this.day = moment().get('day');
@@ -425,7 +425,7 @@ function postObject(text) {
   this.text = text;
   this.likes = 0;
   this.whoLikes = [];
-  this.navigation = profiles.indexOf(currentUser);
+  this.navigation = profiles.indexOf(user);
 };
 
 

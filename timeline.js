@@ -43,9 +43,9 @@ var populatePosts = function() {
   };
 };
 //Post info object constructor
-function PostNotification() {
-  this.text = formtext.value;
-  this.username = currentUser;
+function PostNotification(username,text) {
+  this.text = text;
+  this.username = username;
 };
 
 var setListener = function (target, type, listener) {
@@ -64,14 +64,14 @@ var addTimeline = function() {
   var addPost = function() {
     if(formtext.value !== formtext.defaultValue && currentUser !== 'none') {
       //Add text to posts array
-      currentProfile.posts.push(new postObject(formtext.value));
+      currentProfile.posts.push(new PostObject(currentUser,formtext.value));
       //Send to notifications of friends
       for (var i = 0; i < currentUser.followers.length; i++) {
-        currentUser.followers[i].notifications.push(new PostNotification());
+        currentUser.followers[i].notifications.push(new PostNotification(formtext.value,currentUser));
       };
       //Send to notifications of whoever's page the post is on
       if(currentUser.followers.indexOf(currentProfile) === -1) {
-        currentProfile.notifications.push(new PostNotification);
+        currentProfile.notifications.push(new PostNotification(formtext.value,currentUser));
       };
       //Add a new post
       var formChild = content.firstChild;
