@@ -414,7 +414,7 @@ function DateFormat(year,month,day,hour,minute) {
   this.minute = minute;
 };
 
-function postObject(user,text) {
+function PostObject(user,text) {
   this.name = user.name;
   this.photo = user.profilePicture;
   this.year = moment().get('year');

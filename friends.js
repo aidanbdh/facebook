@@ -33,6 +33,7 @@ var notify = function() {
   $triangle.style.display = 'block';
   $notifications.innerHTML = ''
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
+    console.log(currentUser.notifications[i]);
     $notifications.appendChild(preview(currentUser.notifications[i]));
   };
   if(currentUser.notifications.length === 0) return;

@@ -67,11 +67,11 @@ var addTimeline = function() {
       currentProfile.posts.push(new PostObject(currentUser,formtext.value));
       //Send to notifications of friends
       for (var i = 0; i < currentUser.followers.length; i++) {
-        currentUser.followers[i].notifications.push(new PostNotification(formtext.value,currentUser));
+        currentUser.followers[i].notifications.push(new PostNotification(currentUser, formtext.value));
       };
       //Send to notifications of whoever's page the post is on
       if(currentUser.followers.indexOf(currentProfile) === -1) {
-        currentProfile.notifications.push(new PostNotification(formtext.value,currentUser));
+        currentProfile.notifications.push(new PostNotification(currentUser, formtext.value));
       };
       //Add a new post
       var formChild = content.firstChild;
