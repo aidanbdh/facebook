@@ -8,30 +8,57 @@ var preview = function(notification) {
   var text = notification.text;
   var view = document.createElement('div');
   view.style.height = '60px';
+  view.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  view.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   var thumbnail = document.createElement('img');
   thumbnail.setAttribute('src', username.profilePicture);
+  thumbnail.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   thumbnail.classList.add('thumbnail');
   view.appendChild(thumbnail);
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
+  name.setAttribute('data-navigation', profiles.indexOf(notification.username.name));
+  name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(name);
   return view;
 };
 
+$triangle = document.getElementById('triangle');
+$bubble = document.getElementById('bubble');
+
 var notify = function() {
   $notifications.style.display = 'block';
+  $triangle.style.display = 'block';
   $notifications.innerHTML = ''
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
     $notifications.appendChild(preview(currentUser.notifications[i]));
   };
+  if(currentUser.notifications.length === 0) return;
+  $bubble.style.display = 'block';
 };
 
 $bell.addEventListener('click', notify);
 
 document.getElementsByTagName('body')[0].addEventListener('click', function(event) {
-  if (event.target !== $notifications && event.target!== $bell) {
-    $notifications.style.display = 'none';
+  if (event.target === $notifications || event.target === $bell) return;
+  $triangle.style.display = 'none';
+  $notifications.style.display = 'none';
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
+  };
+});
+
+$notifications.addEventListener('click', function(event) {
+  if(!event.target.dataset.read) return;
+  currentUser.notifications.splice(event.target.dataset.read,1);
+  if(currentUser.notifications.length === 0) {
+    $bubble.style.display = 'none';
+  } else {
+    $bubble.style.display = 'block';
   };
 });
 

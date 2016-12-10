@@ -14,11 +14,7 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
   this.posts = [];
   this.friends = [];
   this.followers = [];
-  this.notifications = [{
-    text: "Welcome to Cranium Literature!",
-    username: profiles[0],
-    read: false
-  }];
+  this.notifications = [];
 };
 
 //Get inputs
@@ -63,7 +59,7 @@ var createProfile = function() {
 var submitProfile = function(){
   createProfile();
   if (!$name.value || !$user.value || !$password.value) return;
-  switchViews('new-profile-container', 'profile-container');
+  switchViews('profile-container');
   currentUser = profiles[profiles.length-1];
   currentProfile = profiles[profiles.length-1];
   loginButton.textContent= 'Logout';
@@ -74,6 +70,8 @@ var submitProfile = function(){
   content.innerHTML = '';
   addTimeline();
   updateProfile(currentProfile);
+  currentUser.notifications.push({text: 'Welcome to Cranium Literature!', username: profiles[0]})
+  $bubble.style.display = 'block';
 };
 
 $form.addEventListener('submit', function(submit) {
