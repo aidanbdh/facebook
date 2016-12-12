@@ -16,6 +16,12 @@ var preview = function(notification) {
   thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   thumbnail.classList.add('thumbnail');
   view.appendChild(thumbnail);
+  var poster = document.createElement('h4');
+  poster.textContent = username.name;
+  poster.classList.add('listPoster');
+  poster.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  poster.setAttribute('data-read', currentUser.notifications.indexOf(notification));
+  view.appendChild(poster);
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
@@ -33,7 +39,6 @@ var notify = function() {
   $triangle.style.display = 'block';
   $notifications.innerHTML = ''
   for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
-    console.log(currentUser.notifications[i]);
     $notifications.appendChild(preview(currentUser.notifications[i]));
   };
   if(currentUser.notifications.length === 0) return;

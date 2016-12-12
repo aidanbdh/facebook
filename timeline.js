@@ -45,7 +45,9 @@ var populatePosts = function() {
 //Post info object constructor
 function PostNotification(username,text) {
   this.username = username;
-  this.text = text;
+  this.text = text.substring(0,22);
+  if(this.text.length !== 22) { return };
+  this.text = this.text + '...';
 };
 
 var setListener = function (target, type, listener) {
