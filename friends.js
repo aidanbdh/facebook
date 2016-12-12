@@ -19,7 +19,7 @@ var preview = function(notification) {
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
-  name.setAttribute('data-navigation', profiles.indexOf(notification.username.name));
+  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
   name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(name);
   return view;
