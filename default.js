@@ -1,5 +1,5 @@
 //Global profile info variables
-var profiles = [
+let profiles = [
   {
     user: 'guest',
     password: '',
@@ -429,21 +429,21 @@ function Post(user,text) {
 };
 
 
-var currentView = 'profile-container';
+let currentView = 'profile-container';
 
-var switchViews = function(newView) {
-  var $view1 = document.getElementById(currentView);
+const switchViews = function(newView) {
+  let $view1 = document.getElementById(currentView);
   $view1.style.display = 'none';
-  var $view2 = document.getElementById(newView);
+  let $view2 = document.getElementById(newView);
   $view2.style.display = 'block';
   currentView = newView;
 };
 
-var currentProfile = profiles[0];
-var currentUser = 'none';
+let currentProfile = profiles[0];
+let currentUser = 'none';
 
 //HomeButton
-var $homePage = document.getElementById('homepage');
+const $homePage = document.getElementById('homepage');
 $homePage.addEventListener('click', function(e) {
   currentProfile = profiles[0];
   content.innerHTML = '';
@@ -463,21 +463,22 @@ $homePage.addEventListener('click', function(e) {
   };
 });
 
-var loginButton = document.getElementById('login');
-var $signup = document.getElementById('signup');
+const loginButton = document.getElementById('login');
+const $signup = document.getElementById('signup');
 
 //Login
-var login = function () {
-  var username = prompt('What is your username?');
+const login = function () {
+  let username = prompt('What is your username?');
   if (!username) return;
-  for (var i = 0; i < profiles.length; i++) {
+  for (let i = 0; i < profiles.length; i++) {
     if (username === profiles[i].user) {
-      var password = prompt('What is your password?');
+      let password = prompt('What is your password?');
       if (password !== profiles[i].password) password = prompt('Please reneter your password');
       if (password !== profiles[i].password) return;
       currentUser = profiles[i];
       if (currentUser === currentProfile) {
         $friend.style.display = 'none';
+        $edit.style.display = 'block';
       } else if (currentUser.friends.indexOf(currentProfile) !== -1) {
         unfriendEvent();
       };
@@ -504,7 +505,7 @@ var login = function () {
 };
 
 //Login button
-var loginPress = function() {
+const loginPress = function() {
   login();
   //Remove elements
   content.innerHTML = '';
@@ -515,8 +516,8 @@ var loginPress = function() {
 }
 
 //Logout
-var logout = function() {
-  var out = window.confirm('Do you want to logout?');
+const logout = function() {
+  let out = window.confirm('Do you want to logout?');
   if (!out) return;
   //Remove elements
   content.innerHTML = '';

@@ -1,30 +1,30 @@
 //populatePostsize Variables
-var formtext = document.getElementById('posttext');
-var form = document.getElementById('timeline');
-var content = document.getElementById('content');
+const formtext = document.getElementById('posttext');
+const form = document.getElementById('timeline');
+const content = document.getElementById('content');
 
-var createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
-  var newDiv = document.createElement('div');
+const createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
+  const newDiv = document.createElement('div');
   newDiv.className = 'post';
-  var newImg = document.createElement('img');
+  const newImg = document.createElement('img');
   newImg.setAttribute('src', photo);
   newImg.classList.add('post-picture');
   newImg.setAttribute('data-user', currentUser);
   newImg.setAttribute('data-navigation', navigation);
-  var newUser = document.createElement('h4');
+  const newUser = document.createElement('h4');
   newUser.classList.add('post-username');
   newUser.setAttribute('data-user', currentUser)
   newUser.setAttribute('data-navigation', navigation);
-  var newUserText = document.createTextNode(name);
-  var newDate = document.createElement('h6');
+  const newUserText = document.createTextNode(name);
+  const newDate = document.createElement('h6');
   newDate.classList.add('post-date');
-  var dateText = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
-  var newDateText = document.createTextNode(dateText)
-  var newEl = document.createElement('p');
-  var newText = document.createTextNode(text);
-  var likeNumberContainer = document.createElement('a');
+  const dateText = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
+  const newDateText = document.createTextNode(dateText)
+  const newEl = document.createElement('p');
+  const newText = document.createTextNode(text);
+  const likeNumberContainer = document.createElement('a');
   likeNumberContainer.setAttribute('data-likes', likes);
-  var likeNumber = document.createTextNode('Like ' + likes);
+  const likeNumber = document.createTextNode('Like ' + likes);
   likeNumberContainer.setAttribute('data-postnumber', number);
   newDiv.appendChild(newEl);
   newDiv.appendChild(newImg);
@@ -37,8 +37,8 @@ var createPost = function(name,photo,year,month,day,hour,minute,text,likes,numbe
   likeNumberContainer.appendChild(likeNumber);
   return newDiv;
 }
-var populatePosts = function() {
-  for (var i = currentProfile.posts.length-1; i > -1; i--) {
+const populatePosts = function() {
+  for (let i = currentProfile.posts.length-1; i > -1; i--) {
     content.appendChild(createPost(currentProfile.posts[i].name, currentProfile.posts[i].photo, currentProfile.posts[i].year, currentProfile.posts[i].month, currentProfile.posts[i].day, currentProfile.posts[i].hour, currentProfile.posts[i].minute, currentProfile.posts[i].text, currentProfile.posts[i].likes , i, currentProfile.posts[i].navigation));
   };
 };
@@ -50,16 +50,16 @@ function PostNotification(username,text) {
   this.text = this.text + '...';
 };
 
-var setListener = function (target, type, listener) {
+const setListener = function (target, type, listener) {
   target.addEventListener(type, listener);
   return function() {
     target.removeEventListener(type, listener);
   };
 };
 
-var removeListener = function() {};
+let removeListener = function() {};
 
-var addTimeline = function() {
+const addTimeline = function() {
   populatePosts();
   //Add and update post function
   removeListener();
@@ -68,7 +68,7 @@ var addTimeline = function() {
       //Add text to posts array
       currentProfile.posts.push(new Post(currentUser,formtext.value));
       //Send to notifications of friends
-      for (var i = 0; i < currentUser.followers.length; i++) {
+      for (let i = 0; i < currentUser.followers.length; i++) {
         currentUser.followers[i].notifications.push(new PostNotification(currentUser, formtext.value));
       };
       //Send to notifications of whoever's page the post is on
@@ -76,7 +76,7 @@ var addTimeline = function() {
         currentProfile.notifications.push(new PostNotification(currentUser, formtext.value));
       };
       //Add a new post
-      var formChild = content.firstChild;
+      const formChild = content.firstChild;
       if (formChild) {
         content.insertBefore(createPost(currentProfile.posts[currentProfile.posts.length-1].name, currentProfile.posts[currentProfile.posts.length-1].photo, currentProfile.posts[currentProfile.posts.length-1].year, currentProfile.posts[currentProfile.posts.length-1].month, currentProfile.posts[currentProfile.posts.length-1].day, currentProfile.posts[currentProfile.posts.length-1].hour, currentProfile.posts[currentProfile.posts.length-1].minute, currentProfile.posts[currentProfile.posts.length-1].text, currentProfile.posts[currentProfile.posts.length-1].likes, currentProfile.posts.length-1, currentProfile.posts[currentProfile.posts.length-1].navigation), formChild);
       } else {
@@ -108,18 +108,18 @@ form.addEventListener('submit', function(submit) {submit.preventDefault();}); //
 //likes
 content.addEventListener('click', function(event) {
   if (!event.target.dataset.likes) return;
-  var who = event.target.dataset.postnumber;
+  const who = event.target.dataset.postnumber;
   if (currentUser !== 'none' && currentProfile.posts[who].whoLikes.indexOf(currentUser) === -1) {
     currentProfile.posts[who].whoLikes.push(currentUser);
     currentProfile.posts[who].likes++;
     event.target.dataset.likes++;
-    var likes = event.target.dataset.likes;
+    let likes = event.target.dataset.likes;
     event.target.textContent = 'Like ' + likes;
   } else if (currentUser !== 'none') {
     currentProfile.posts[who].whoLikes.splice(currentProfile.posts[who].whoLikes.indexOf(currentUser),1);
     currentProfile.posts[who].likes--;
     event.target.dataset.likes--;
-    var likes = event.target.dataset.likes;
+    let likes = event.target.dataset.likes;
     event.target.textContent = 'Like ' + likes;
   };
 });

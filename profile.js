@@ -1,12 +1,14 @@
-var updateProfile = function(profile) {
+const $edit = document.getElementById('edit');
+
+const updateProfile = function(profile) {
   //Dom content based on user
   //Profile Name
   document.getElementById('profile-name').textContent = profile.name;
   //Profile Photo
-  var photo = document.getElementById('profile-photo-image');
+  const photo = document.getElementById('profile-photo-image');
   photo.src = profile.profilePicture;
   //Cover Photo
-  var cover = document.getElementById('cover');
+  const cover = document.getElementById('cover');
   cover.style.backgroundImage = "url('" + profile.coverPhoto + "')";
   cover.style.backgroundPosition = profile.coverPosition;
   //Profile info
@@ -16,6 +18,11 @@ var updateProfile = function(profile) {
   document.getElementById('interests').textContent = 'Interests: ' + profile.interests;
   document.getElementById('bio').textContent = 'Bio: ' + profile.bio;
   document.getElementById('quotes').textContent = "Quotes: ''" + profile.quotes + "''";
+  if(currentUser === currentProfile) {
+    $edit.style.display = 'block';
+  } else {
+    $edit.style.display = 'none';
+  }
 };
 
 String.prototype.capitalize = function() {
@@ -64,7 +71,7 @@ const editProfile = function(edit) {
       event.target.textContent = 'Edit Profile';
       break;
     default:
-
+      login();
     break;
   }
 }
