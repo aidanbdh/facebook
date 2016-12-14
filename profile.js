@@ -71,7 +71,8 @@ const editProfile = function(edit) {
       event.target.textContent = 'Edit Profile';
       break;
     default:
-      login();
+      var editMaybe = prompt("Would you like to edit your profile?");
+      if(editMaybe) {editProfile('edit')};
     break;
   }
 }
