@@ -18,13 +18,13 @@ var preview = function(notification) {
   view.appendChild(thumbnail);
   var poster = document.createElement('h4');
   poster.textContent = username.name;
-  poster.classList.add('listPoster');
+  poster.classList.add('list-poster');
   poster.setAttribute('data-navigation', profiles.indexOf(notification.username));
   poster.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(poster);
   var name = document.createElement('p');
   name.textContent = text;
-  name.classList.add('listName');
+  name.classList.add('list-name');
   name.setAttribute('data-navigation', profiles.indexOf(notification.username));
   name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(name);

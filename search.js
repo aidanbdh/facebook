@@ -66,7 +66,7 @@ var searchBox = function() {
     var name = document.createElement('p');
     name.setAttribute('data-navigation', result);
     name.textContent = profiles[result].name;
-    name.classList.add('listName');
+    name.classList.add('list-name');
     view.appendChild(name);
     views.push(view);
   };
