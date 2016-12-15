@@ -16,10 +16,16 @@ var preview = function(notification) {
   thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   thumbnail.classList.add('thumbnail');
   view.appendChild(thumbnail);
+  var poster = document.createElement('h4');
+  poster.textContent = username.name;
+  poster.classList.add('listPoster');
+  poster.setAttribute('data-navigation', profiles.indexOf(notification.username));
+  poster.setAttribute('data-read', currentUser.notifications.indexOf(notification));
+  view.appendChild(poster);
   var name = document.createElement('p');
   name.textContent = text;
   name.classList.add('listName');
-  name.setAttribute('data-navigation', profiles.indexOf(notification.username.name));
+  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
   name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
   view.appendChild(name);
   return view;
