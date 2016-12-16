@@ -56,25 +56,20 @@ var searchBox = function() {
   var box = document.createElement('div');
   for (var i = 0; i < l; i++) {
     var result = results[i];
-    var view = document.createElement('div');
-    view.setAttribute('data-navigation', result);
-    var thumbnail = document.createElement('img');
-    thumbnail.setAttribute('data-navigation', result);
-    thumbnail.setAttribute('src', profiles[result].profilePicture);
-    thumbnail.classList.add('thumbnail');
-    view.appendChild(thumbnail);
-    var name = document.createElement('p');
-    name.setAttribute('data-navigation', result);
-    name.textContent = profiles[result].name;
-    name.classList.add('list-name');
-    view.appendChild(name);
+    var view = createDomElement('div',{'data-navigation': result},[
+      createDomElement('img',{
+        'data-navigation': result,
+        'src': profiles[result].profilePicture,
+        class: 'thumbnail'
+      },[]),
+      createDomElement('p',{
+        'data-navigation': result,
+        class: 'list-name'
+      },[profiles[result].name])
+    ]);
     views.push(view);
   };
-  var moreResults = document.createElement('p');
-  var resultsText = document.createTextNode('See More Results');
-  moreResults.appendChild(resultsText);
-  moreResults.id = 'more-results';
-  views.push(moreResults);
+  views.push(createDomElement('p',{id: 'more-results'},['See More Results']));
   return views;
  };
 
@@ -82,22 +77,18 @@ var searchPage = function() {
   var views = [];
   for (var i = 0; i < results.length; i++) {
    var result = results[i];
-   var view = document.createElement('div');
-   view.setAttribute('data-navigation', result);
-   var thumbnail = document.createElement('img');
-   thumbnail.setAttribute('data-navigation', result);
-   thumbnail.setAttribute('src', profiles[result].profilePicture);
-   thumbnail.classList.add('search-picture');
-   view.appendChild(thumbnail);
-   var name = document.createElement('h5');
-   name.setAttribute('data-navigation', result);
-   name.textContent = profiles[result].name;
-   name.classList.add('search-name');
-   view.appendChild(name);
-   var bio = document.createElement('p');
-   bio.setAttribute('data-navigation', result);
-   bio.textContent = profiles[result].bio;
-   view.appendChild(bio);
+   var view = createDomElement('div',{'data-navigation': result},[
+     createDomElement('img',{
+       'data-navigation': result,
+       src: profiles[result].profilePicture,
+       class: 'search-picture'
+     },[]),
+     createDomElement('h5',{
+       'data-navigation': result,
+       class: 'search-name'
+     },[profiles[result].name]),
+     createDomElement('p',{'data-navigation': result},[profiles[result].bio]),
+   ]);
    views.push(view);
  };
  return views;

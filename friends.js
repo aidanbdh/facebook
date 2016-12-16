@@ -6,28 +6,28 @@ var $notifications = document.getElementById('notification');
 var preview = function(notification) {
   var username = notification.username;
   var text = notification.text;
-  var view = document.createElement('div');
-  view.style.height = '60px';
-  view.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  view.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  var thumbnail = document.createElement('img');
-  thumbnail.setAttribute('src', username.profilePicture);
-  thumbnail.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  thumbnail.classList.add('thumbnail');
-  view.appendChild(thumbnail);
-  var poster = document.createElement('h4');
-  poster.textContent = username.name;
-  poster.classList.add('list-poster');
-  poster.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  poster.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  view.appendChild(poster);
-  var name = document.createElement('p');
-  name.textContent = text;
-  name.classList.add('list-name');
-  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  view.appendChild(name);
+  var view = createDomElement('div',{
+    style: 'height: 60px',
+    'data-navigation': profiles.indexOf(notification.username),
+    'data-read': currentUser.notifications.indexOf(notification)
+  },[
+    createDomElement('img',{
+      src: username.profilePicture,
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: thumbnail
+    },[]),
+    createDomElement('h4',{
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: 'list-poster'
+    },[username.name]),
+    createDomElement('p',{
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: 'list-name'
+    },[text])
+  ]);
   return view;
 };
 
