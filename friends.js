@@ -1,12 +1,12 @@
 //Notifications
 
-var $bell = document.getElementById('bell');
-var $notifications = document.getElementById('notification');
+const $bell = document.getElementById('bell');
+const $notifications = document.getElementById('notification');
 
-var preview = function(notification) {
-  var username = notification.username;
-  var text = notification.text;
-  var view = createDomElement('div',{
+const preview = function(notification) {
+  const username = notification.username;
+  const text = notification.text;
+  const view = createDomElement('div',{
     style: 'height: 60px',
     'data-navigation': profiles.indexOf(notification.username),
     'data-read': currentUser.notifications.indexOf(notification)
@@ -31,14 +31,14 @@ var preview = function(notification) {
   return view;
 };
 
-$triangle = document.getElementById('triangle');
-$bubble = document.getElementById('bubble');
+const $triangle = document.getElementById('triangle');
+const $bubble = document.getElementById('bubble');
 
-var notify = function() {
+const notify = function() {
   $notifications.style.display = 'block';
   $triangle.style.display = 'block';
   $notifications.innerHTML = ''
-  for (var i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
+  for (let i = currentUser.notifications.length-1; i > currentUser.notifications.length-4; i--) {
     $notifications.appendChild(preview(currentUser.notifications[i]));
   };
   if(currentUser.notifications.length === 0) return;
@@ -70,9 +70,9 @@ $notifications.addEventListener('click', function(event) {
 
 //Friending
 
-var $friend = document.getElementById('friend');
+const $friend = document.getElementById('friend');
 
-var friendEvent = function() {
+const friendEvent = function() {
   $friend.textContent = 'Add friend';
   if ($friend.dataset.friendEvent === 'add') return;
   $friend.addEventListener('click', addFriend);
@@ -80,7 +80,7 @@ var friendEvent = function() {
   $friend.dataset.friendEvent = 'add';
 };
 
-var unfriendEvent = function() {
+const unfriendEvent = function() {
   $friend.textContent = 'unfriend';
   if ($friend.dataset.friendEvent === 'remove') return;
   $friend.addEventListener('click', removeFriend);
@@ -88,7 +88,7 @@ var unfriendEvent = function() {
   $friend.dataset.friendEvent = 'remove';
 };
 
-var addFriend = function() {
+const addFriend = function() {
   if (currentUser === 'none') {
     login();
   } else {
@@ -98,7 +98,7 @@ var addFriend = function() {
   };
 };
 
-var removeFriend = function() {
+const removeFriend = function() {
   if (currentUser.friends.indexOf(currentProfile) !== -1) {
     currentUser.friends.splice(currentUser.friends.indexOf(currentProfile),1);
     currentProfile.followers.splice(currentProfile.followers.indexOf(currentUser),1);

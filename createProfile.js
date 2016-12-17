@@ -18,33 +18,33 @@ function CreateProfile (user, password, profilePicture, coverPhoto, name, work, 
 };
 
 //Get inputs
-var $form = document.getElementById('new-profile-form');
-var $name = document.getElementById('new-name');
-var $user = document.getElementById('new-user');
-var $password = document.getElementById('new-password');
-var $profilePicture = document.getElementById('new-profile-picture');
-var $coverPhoto = document.getElementById('new-cover-photo');
-var $work = document.getElementById('new-work');
-var $school = document.getElementById('new-school');
-var $home = document.getElementById('new-home');
-var $interests = document.getElementById('new-interests');
-var $bio = document.getElementById('new-bio');
-var $quotes = document.getElementById('new-quotes');
-var $submit = document.getElementById('profile-button');
+const $form = document.getElementById('new-profile-form');
+const $name = document.getElementById('new-name');
+const $user = document.getElementById('new-user');
+const $password = document.getElementById('new-password');
+const $profilePicture = document.getElementById('new-profile-picture');
+const $coverPhoto = document.getElementById('new-cover-photo');
+const $work = document.getElementById('new-work');
+const $school = document.getElementById('new-school');
+const $home = document.getElementById('new-home');
+const $interests = document.getElementById('new-interests');
+const $bio = document.getElementById('new-bio');
+const $quotes = document.getElementById('new-quotes');
+const $submit = document.getElementById('profile-button');
 
-var createProfile = function() {
-  var name = $name.value;
-  var user = $user.value;
-  var password = $password.value;
-  var profilePicture = $profilePicture.value;
-  var coverPhoto = $coverPhoto.value;
-  var work = $work.value;
-  var school = $school.value;
-  var home = $home.value;
-  var interests = $interests.value;
-  var bio = $bio.value;
-  var quotes = $quotes.value;
-  for (var i = 0; i < profiles.length; i++) {
+const createProfile = function() {
+  let name = $name.value;
+  let user = $user.value;
+  let password = $password.value;
+  let profilePicture = $profilePicture.value;
+  let coverPhoto = $coverPhoto.value;
+  let work = $work.value;
+  let school = $school.value;
+  let home = $home.value;
+  let interests = $interests.value;
+  let bio = $bio.value;
+  let quotes = $quotes.value;
+  for (let i = 0; i < profiles.length; i++) {
     if(profiles[i].user === user) {
       alert("That username is already in use. Please try again");
       $user.value = '';
@@ -52,11 +52,11 @@ var createProfile = function() {
     };
   };
   if(!user || !name || !password) return;
-  var newUser = new CreateProfile (user, password, profilePicture, coverPhoto, name, work, school, home, interests, bio, quotes);
+  let newUser = new CreateProfile (user, password, profilePicture, coverPhoto, name, work, school, home, interests, bio, quotes);
   profiles.push(newUser);
 };
 
-var submitProfile = function(){
+let submitProfile = function(){
   createProfile();
   if (!$name.value || !$user.value || !$password.value) return;
   switchViews('profile-container');
