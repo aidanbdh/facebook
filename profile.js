@@ -27,12 +27,10 @@ const editProfile = function(edit) {
     let $ps = document.querySelectorAll('#profile p');
     for(let i = $ps.length-1; i > -1; i--) {
       $ps[i].firstChild.splitText($ps[i].id.length + 2);
-      $span = $ps[i].lastChild;
-      $label = document.createElement('label')
-      $label.textContent = capitalize($ps[i].id) + ': ';
-      $input = document.createElement('input');
-      $input.value = $span.textContent;
-      $label.appendChild($input);
+      $label = createDomElement('label',{},[
+        capitalize($ps[i].id) + ': ',
+        createDomElement('input',{value: $ps[i].lastChild.textContent},[])
+      ]);
       $ps[i].parentNode.replaceChild($label, $ps[i]);
     };
     event.target.dataset.profile = '';
@@ -40,8 +38,7 @@ const editProfile = function(edit) {
   } else {
     let $labels = document.querySelectorAll('#profile label');
     for(let i = $labels.length-1; i > -1; i--) {
-      $p = document.createElement('p');
-      $p.textContent = $labels[i].textContent + $labels[i].lastChild.value;
+      $p = createDomElement('p',{},[$labels[i].textContent + $labels[i].lastChild.value])
       $labels[i].parentNode.replaceChild($p, $labels[i]);
       let attribute = $labels[i].textContent.toLowerCase();
       attribute = attribute.slice(0,attribute.length-2);

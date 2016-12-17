@@ -3,38 +3,43 @@ var formtext = document.getElementById('posttext');
 var form = document.getElementById('timeline');
 var content = document.getElementById('content');
 
-var createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
-  var newDiv = document.createElement('div');
-  newDiv.className = 'post';
-  var newImg = document.createElement('img');
-  newImg.setAttribute('src', photo);
-  newImg.classList.add('post-picture');
-  newImg.setAttribute('data-user', currentUser);
-  newImg.setAttribute('data-navigation', navigation);
-  var newUser = document.createElement('h4');
-  newUser.classList.add('post-username');
-  newUser.setAttribute('data-user', currentUser)
-  newUser.setAttribute('data-navigation', navigation);
-  var newUserText = document.createTextNode(name);
-  var newDate = document.createElement('h6');
-  newDate.classList.add('post-date');
-  var dateText = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
-  var newDateText = document.createTextNode(dateText)
-  var newEl = document.createElement('p');
-  var newText = document.createTextNode(text);
-  var likeNumberContainer = document.createElement('a');
-  likeNumberContainer.setAttribute('data-likes', likes);
-  var likeNumber = document.createTextNode('Like ' + likes);
-  likeNumberContainer.setAttribute('data-postnumber', number);
-  newDiv.appendChild(newEl);
-  newDiv.appendChild(newImg);
-  newDiv.appendChild(newUser);
-  newUser.appendChild(newUserText);
-  newDiv.appendChild(newDate);
-  newDate.appendChild(newDateText);
-  newEl.appendChild(newText);
-  newDiv.appendChild(likeNumberContainer);
-  likeNumberContainer.appendChild(likeNumber);
+function createDomElement(tag,attributes,child) {
+  const $tag = document.createElement(tag);
+  for (property in attributes) {
+    $tag.setAttribute(property, attributes[property]);
+  };
+  if (!child) return;
+  for (let i = 0; i < child.length; i++) {
+    if(typeof child[i] === 'string') {
+      $tag.appendChild(document.createTextNode(child[i]));
+    } else {
+      $tag.appendChild(child[i]);
+    };
+  };
+  return $tag;
+};
+
+const createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
+  var date = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
+  const newDiv = createDomElement('div',{class: 'post'},[
+    createDomElement('p',{},[text]),
+    createDomElement('img',{
+      src: photo,
+      class: 'post-picture',
+      'data-user': currentUser,
+      'data-navigation': navigation
+    },[]),
+    createDomElement('h4',{
+      class: 'post-username',
+      'data-user': currentUser,
+      'data-navigation': navigation
+    },[name]),
+    createDomElement('h6',{class: 'post-date'},[date]),
+    createDomElement('a',{
+      'data-likes': likes,
+      'data-postnumber': number
+    },['Like ' + likes])
+  ]);
   return newDiv;
 }
 var populatePosts = function() {
