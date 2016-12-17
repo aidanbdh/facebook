@@ -3,38 +3,43 @@ const formtext = document.getElementById('posttext');
 const form = document.getElementById('timeline');
 const content = document.getElementById('content');
 
+function createDomElement(tag,attributes,child) {
+  const $tag = document.createElement(tag);
+  for (property in attributes) {
+    $tag.setAttribute(property, attributes[property]);
+  };
+  if (!child) return;
+  for (let i = 0; i < child.length; i++) {
+    if(typeof child[i] === 'string') {
+      $tag.appendChild(document.createTextNode(child[i]));
+    } else {
+      $tag.appendChild(child[i]);
+    };
+  };
+  return $tag;
+};
+
 const createPost = function(name,photo,year,month,day,hour,minute,text,likes,number,navigation) {
-  const newDiv = document.createElement('div');
-  newDiv.className = 'post';
-  const newImg = document.createElement('img');
-  newImg.setAttribute('src', photo);
-  newImg.classList.add('post-picture');
-  newImg.setAttribute('data-user', currentUser);
-  newImg.setAttribute('data-navigation', navigation);
-  const newUser = document.createElement('h4');
-  newUser.classList.add('post-username');
-  newUser.setAttribute('data-user', currentUser)
-  newUser.setAttribute('data-navigation', navigation);
-  const newUserText = document.createTextNode(name);
-  const newDate = document.createElement('h6');
-  newDate.classList.add('post-date');
-  const dateText = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
-  const newDateText = document.createTextNode(dateText)
-  const newEl = document.createElement('p');
-  const newText = document.createTextNode(text);
-  const likeNumberContainer = document.createElement('a');
-  likeNumberContainer.setAttribute('data-likes', likes);
-  const likeNumber = document.createTextNode('Like ' + likes);
-  likeNumberContainer.setAttribute('data-postnumber', number);
-  newDiv.appendChild(newEl);
-  newDiv.appendChild(newImg);
-  newDiv.appendChild(newUser);
-  newUser.appendChild(newUserText);
-  newDiv.appendChild(newDate);
-  newDate.appendChild(newDateText);
-  newEl.appendChild(newText);
-  newDiv.appendChild(likeNumberContainer);
-  likeNumberContainer.appendChild(likeNumber);
+  var date = moment().set(new DateFormat(year,month,day,hour,minute)).format('l h:mm a');;
+  const newDiv = createDomElement('div',{class: 'post'},[
+    createDomElement('p',{},[text]),
+    createDomElement('img',{
+      src: photo,
+      class: 'post-picture',
+      'data-user': currentUser,
+      'data-navigation': navigation
+    },[]),
+    createDomElement('h4',{
+      class: 'post-username',
+      'data-user': currentUser,
+      'data-navigation': navigation
+    },[name]),
+    createDomElement('h6',{class: 'post-date'},[date]),
+    createDomElement('a',{
+      'data-likes': likes,
+      'data-postnumber': number
+    },['Like ' + likes])
+  ]);
   return newDiv;
 }
 const populatePosts = function() {

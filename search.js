@@ -52,52 +52,44 @@ const searchBox = function() {
   let l = results.length;
   if (l > 3) { l = 3; };
   //Create results
+
   let views = [];
   const box = document.createElement('div');
   for (let i = 0; i < l; i++) {
     const result = results[i];
-    const view = document.createElement('div');
-    view.setAttribute('data-navigation', result);
-    const thumbnail = document.createElement('img');
-    thumbnail.setAttribute('data-navigation', result);
-    thumbnail.setAttribute('src', profiles[result].profilePicture);
-    thumbnail.classList.add('thumbnail');
-    view.appendChild(thumbnail);
-    const name = document.createElement('p');
-    name.setAttribute('data-navigation', result);
-    name.textContent = profiles[result].name;
-    name.classList.add('listName');
-    view.appendChild(name);
+    const view = createDomElement('div',{'data-navigation': result},[
+      createDomElement('img',{
+        'data-navigation': result,
+        'src': profiles[result].profilePicture,
+        class: 'thumbnail'
+      },[]),
+      createDomElement('p',{
+        'data-navigation': result,
+        class: 'list-name'
+      },[profiles[result].name])
+    ]);
     views.push(view);
   };
-  const moreResults = document.createElement('p');
-  const resultsText = document.createTextNode('See More Results');
-  moreResults.appendChild(resultsText);
-  moreResults.id = 'more-results';
-  views.push(moreResults);
+  views.push(createDomElement('p',{id: 'more-results'},['See More Results']));
   return views;
  };
 
 const searchPage = function() {
   let views = [];
-  for (let i = 0; i < results.length; i++) {
+  for (const i = 0; i < results.length; i++) {
    const result = results[i];
-   const view = document.createElement('div');
-   view.setAttribute('data-navigation', result);
-   const thumbnail = document.createElement('img');
-   thumbnail.setAttribute('data-navigation', result);
-   thumbnail.setAttribute('src', profiles[result].profilePicture);
-   thumbnail.classList.add('search-picture');
-   view.appendChild(thumbnail);
-   const name = document.createElement('h5');
-   name.setAttribute('data-navigation', result);
-   name.textContent = profiles[result].name;
-   name.classList.add('search-name');
-   view.appendChild(name);
-   const bio = document.createElement('p');
-   bio.setAttribute('data-navigation', result);
-   bio.textContent = profiles[result].bio;
-   view.appendChild(bio);
+   const view = createDomElement('div',{'data-navigation': result},[
+     createDomElement('img',{
+       'data-navigation': result,
+       src: profiles[result].profilePicture,
+       class: 'search-picture'
+     },[]),
+     createDomElement('h5',{
+       'data-navigation': result,
+       class: 'search-name'
+     },[profiles[result].name]),
+     createDomElement('p',{'data-navigation': result},[profiles[result].bio]),
+   ]);
    views.push(view);
  };
  return views;

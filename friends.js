@@ -6,28 +6,28 @@ const $notifications = document.getElementById('notification');
 const preview = function(notification) {
   const username = notification.username;
   const text = notification.text;
-  const view = document.createElement('div');
-  view.style.height = '60px';
-  view.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  view.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  const thumbnail = document.createElement('img');
-  thumbnail.setAttribute('src', username.profilePicture);
-  thumbnail.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  thumbnail.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  thumbnail.classList.add('thumbnail');
-  view.appendChild(thumbnail);
-  const poster = document.createElement('h4');
-  poster.textContent = username.name;
-  poster.classList.add('listPoster');
-  poster.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  poster.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  view.appendChild(poster);
-  const name = document.createElement('p');
-  name.textContent = text;
-  name.classList.add('listName');
-  name.setAttribute('data-navigation', profiles.indexOf(notification.username));
-  name.setAttribute('data-read', currentUser.notifications.indexOf(notification));
-  view.appendChild(name);
+  const view = createDomElement('div',{
+    style: 'height: 60px',
+    'data-navigation': profiles.indexOf(notification.username),
+    'data-read': currentUser.notifications.indexOf(notification)
+  },[
+    createDomElement('img',{
+      src: username.profilePicture,
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: thumbnail
+    },[]),
+    createDomElement('h4',{
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: 'list-poster'
+    },[username.name]),
+    createDomElement('p',{
+      'data-navigation': profiles.indexOf(notification.username),
+      'data-read': currentUser.notifications.indexOf(notification),
+      class: 'list-name'
+    },[text])
+  ]);
   return view;
 };
 

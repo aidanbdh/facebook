@@ -56,21 +56,21 @@ body {
   width: 48px;
 }
 
-.listPoster {
+.list-poster {
   display: inline-block;
   position: relative;
   bottom: 36px;
   margin: 0;
 }
 
-.listName {
+.list-name {
   display: inline-block;
   position: relative;
   bottom: 23px;
   width: 330px;
 }
 
-#notification .listName {
+#notification .list-name {
   margin:0;
   left: 56px;
   bottom: 36px;
