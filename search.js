@@ -15,11 +15,11 @@ function search(text) {
       text[i] = text[i].slice(0, j);
       const resultsA = profiles.filter(value => {
         const name = fixText(value.name);
-        return (name.filter((value, index) => {return name[index].indexOf(text[i]) !== -1}))[0];
+        return (name.find((value, index) => {return name[index].indexOf(text[i]) !== -1}));
       });
       const resultsB = profiles.filter(value => {
         const user = fixText(value.user);
-        return (user.filter((value, index) => {return user[index].indexOf(text[i]) !== -1}))[0];
+        return (user.find((value, index) => {return user[index].indexOf(text[i]) !== -1}));
       });
       results = results.concat(resultsA,resultsB);
     };
@@ -60,7 +60,7 @@ const searchBox = function() {
 
 const searchPage = function() {
   let views = [];
-  for (let i = 0; i < results.length; i++) {
+  results.map(() => {
    const view = createDomElement('div',{'data-navigation': profiles.indexOf(results[i])},[
      createDomElement('img',{
        'data-navigation': profiles.indexOf(results[i]),
@@ -74,7 +74,7 @@ const searchPage = function() {
      createDomElement('p',{'data-navigation': i},[results[i].bio]),
    ]);
    views.push(view);
- };
+ });
  return views;
 };
 
