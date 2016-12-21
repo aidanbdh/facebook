@@ -60,18 +60,18 @@ const searchBox = function() {
 
 const searchPage = function() {
   let views = [];
-  results.map(() => {
-   const view = createDomElement('div',{'data-navigation': profiles.indexOf(results[i])},[
+  results.map((value) => {
+   const view = createDomElement('div',{'data-navigation': profiles.indexOf(value)},[
      createDomElement('img',{
-       'data-navigation': profiles.indexOf(results[i]),
-       src: results[i].profilePicture,
+       'data-navigation': profiles.indexOf(value),
+       src: value.profilePicture,
        class: 'search-picture'
      },[]),
      createDomElement('h5',{
-       'data-navigation': profiles.indexOf(results[i]),
+       'data-navigation': profiles.indexOf(value),
        class: 'search-name'
-     },[results[i].name]),
-     createDomElement('p',{'data-navigation': i},[results[i].bio]),
+     },[value.name]),
+     createDomElement('p',{'data-navigation': profiles.indexOf(value)},[value.bio]),
    ]);
    views.push(view);
  });
