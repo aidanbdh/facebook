@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = () => {
   //Implementation: https://grapevine-analytics.herokuapp.com/view
   fetch('localhost:3000/view', {
     headers: {
