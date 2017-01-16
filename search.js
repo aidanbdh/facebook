@@ -1,50 +1,36 @@
 //Array for results
 let results = [];
 
-//Find results and add to array
-const search = function(text) {
-  results = [];
+function fixText(text) {
   text = text.toLowerCase();
-  let searchLength;
-  if (text.length <= 3) {
-    searchLength = 1;
-  } else {
-    searchLength = text.length-3;
-  };
-  for (let j = 0; j < searchLength; j++) {
-    text = text.trim();
-    text = text.slice(0, text.length-j);
-    text = text.trim();
-    //Name
-    let name;
-    for (let i = 0; i < profiles.length; i++) {
-      name = profiles[i].name.toLowerCase();
-      for (let k = 0; k < name.length-3; k++) {
-        if (name.indexOf(text,k) !== -1) {
-          results.push(i);
-        };
-      };
-    };
-    //Username
-    let user;
-    for (let i = 0; i < profiles.length; i++) {
-      user = profiles[i].user.toLowerCase();
-      for (let k = 0; k < user.length-3; k++) {
-        if (user.indexOf(text,k) !== -1) {
-          results.push(i);
-        };
-      };
+  return text.split(' ');
+}
+
+//Find results and add to array
+function search(text) {
+  results = [];
+  text = fixText(text);
+  for (let i = 0; i < text.length; i++) {
+    for (let j = text[i].length; j > 0; j--) {
+      text[i] = text[i].slice(0, j);
+      const resultsA = profiles.filter(value => {
+        const name = fixText(value.name);
+        return (name.find((value, index) => {return name[index].indexOf(text[i]) !== -1}));
+      });
+      const resultsB = profiles.filter(value => {
+        const user = fixText(value.user);
+        return (user.find((value, index) => {return user[index].indexOf(text[i]) !== -1}));
+      });
+      results = results.concat(resultsA,resultsB);
     };
   };
-  //Remove doubles
-  let newResults = [];
-  for (let i = 0; i < results.length; i++) {
-    if(newResults.indexOf(results[i]) == -1 && results[i] !== currentProfile) {
-      newResults.push(results[i]);
-    };
-  };
-  results = newResults;
+  results = results.filter((value, index) => {
+    return results.indexOf(value, 0) === index;
+  });
+  console.log(results);
+  return results;
 };
+
 
 //Create results from array and display name and profile picture
 const searchBox = function() {
@@ -52,21 +38,19 @@ const searchBox = function() {
   let l = results.length;
   if (l > 3) { l = 3; };
   //Create results
-
   let views = [];
   const box = document.createElement('div');
   for (let i = 0; i < l; i++) {
-    const result = results[i];
-    const view = createDomElement('div',{'data-navigation': result},[
+    const view = createDomElement('div',{'data-navigation': profiles.indexOf(results[i])},[
       createDomElement('img',{
-        'data-navigation': result,
-        'src': profiles[result].profilePicture,
+        'data-navigation': profiles.indexOf(results[i]),
+        'src': results[i].profilePicture,
         class: 'thumbnail'
       },[]),
       createDomElement('p',{
-        'data-navigation': result,
+        'data-navigation': profiles.indexOf(results[i]),
         class: 'list-name'
-      },[profiles[result].name])
+      },[results[i].name])
     ]);
     views.push(view);
   };
@@ -76,22 +60,21 @@ const searchBox = function() {
 
 const searchPage = function() {
   let views = [];
-  for (const i = 0; i < results.length; i++) {
-   const result = results[i];
-   const view = createDomElement('div',{'data-navigation': result},[
+  results.map((value) => {
+   const view = createDomElement('div',{'data-navigation': profiles.indexOf(value)},[
      createDomElement('img',{
-       'data-navigation': result,
-       src: profiles[result].profilePicture,
+       'data-navigation': profiles.indexOf(value),
+       src: value.profilePicture,
        class: 'search-picture'
      },[]),
      createDomElement('h5',{
-       'data-navigation': result,
+       'data-navigation': profiles.indexOf(value),
        class: 'search-name'
-     },[profiles[result].name]),
-     createDomElement('p',{'data-navigation': result},[profiles[result].bio]),
+     },[value.name]),
+     createDomElement('p',{'data-navigation': profiles.indexOf(value)},[value.bio]),
    ]);
    views.push(view);
- };
+ });
  return views;
 };
 
