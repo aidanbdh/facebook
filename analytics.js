@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener('load', = () => {
   //Implementation: https://grapevine-analytics.herokuapp.com/view
   fetch('localhost:3000/view', {
     headers: {
@@ -14,4 +14,4 @@ window.onload = () => {
     .catch(() => {
       console.log('Error sending analytics. Please contact grapevineanalytics for more details.');
     });
-}
+});
